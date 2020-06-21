@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login {
-    private JPanel panel;
+public class Login extends JFrame {
+    private JPanel mainPanel;
     private JPasswordField passwordField;
     private JLabel welcomeLabel;
     private JLabel usernameLabel;
@@ -10,11 +12,23 @@ public class Login {
     private JTextField usernameField;
     private JLabel passwordLabel;
 
-    public static void main(String[] args) {
-        JFrame myFrame = new JFrame("Login Covid19 Manager");
-        myFrame.setContentPane(new Login().panel);
-        myFrame.setVisible(true);
-        myFrame.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()/4);
+    public Login() {
+        setTitle("Login Covid19 Manager");
+        setContentPane(mainPanel);
+        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Epidemiologo();
+            }
+        });
     }
+
+    public static void main(String[] args) {
+        new Login();
+    }
+
 }
