@@ -19,11 +19,9 @@ public class Login extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Epidemiologo();
-            }
+        loginButton.addActionListener(e -> {
+            new Epidemiologo();
+            dispose();
         });
     }
 
