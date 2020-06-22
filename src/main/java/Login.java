@@ -43,7 +43,6 @@ public class Login extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
             dispose();
         });
     }
