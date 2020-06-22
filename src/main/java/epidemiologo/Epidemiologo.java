@@ -1,10 +1,14 @@
+package epidemiologo;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Epidemiologo extends JFrame {
     private JPanel mainPanel;
     private JLabel riepilogoDatiLabel;
-    private JTable table1;
+    private JTable datiPazienti;
+    private JLabel cercaLabel;
+    private JTextField cercaDati;
 
     public Epidemiologo()  {
         setTitle("Gestione epidemiologo");
