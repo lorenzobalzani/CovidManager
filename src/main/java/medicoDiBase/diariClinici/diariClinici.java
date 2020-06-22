@@ -9,7 +9,10 @@ public class diariClinici extends JFrame {
     private JPanel mainPanel;
     private JLabel welcomeLabel;
     private JComboBox comboBox1;
-    private JTextPane textPane1;
+    private JTextArea textArea1;
+    private JButton salvaButton;
+    private JButton defaultButton;
+    private JLabel selectLabel;
     private JButton diariClinicButton;
 
     public diariClinici() {

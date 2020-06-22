@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="medicoDiBase.diariClinici.diariClinici">
   <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
-    <rowspec value="center:d:noGrow"/>
+    <rowspec value="center:42px:noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="center:33px:noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:d:grow"/>
-    <colspec value="fill:d:grow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <colspec value="fill:432px:grow"/>
     <constraints>
-      <xy x="43" y="144" width="606" height="343"/>
+      <xy x="43" y="144" width="445" height="343"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -27,20 +30,58 @@
       </component>
       <component id="a4c4b" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties/>
       </component>
-      <component id="cc464" class="javax.swing.JTextPane" binding="textPane1" default-binding="true">
+      <component id="48ca" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties>
-          <editable value="false"/>
+          <columns value="3"/>
+        </properties>
+      </component>
+      <splitpane id="a9dc">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ef091" class="javax.swing.JButton" binding="salvaButton">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties>
+              <text value="Salva"/>
+            </properties>
+          </component>
+          <component id="857c0" class="javax.swing.JButton" binding="defaultButton">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <text value="Ripristina"/>
+            </properties>
+          </component>
+        </children>
+      </splitpane>
+      <component id="447d1" class="javax.swing.JLabel" binding="selectLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font size="14"/>
+          <text value="Seleziona il paziente in cura di cui visualizzare il diario clinico..."/>
         </properties>
       </component>
     </children>
