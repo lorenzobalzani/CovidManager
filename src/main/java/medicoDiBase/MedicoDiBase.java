@@ -13,10 +13,12 @@ import java.awt.event.ActionListener;
 public class MedicoDiBase extends JFrame {
     private JPanel mainPanel;
     private JLabel riepilogoDatiLabel;
-    private JLabel cercaLabel;
     private JTable tabellaDati;
-    private JTextField inserisciChiaveDiRicercaTextField;
     private JScrollPane scrollPane1;
+    private JTextField cercaTextField;
+    private JButton diariClinici;
+    private JLabel cercaLabel;
+    private JLabel oppureLabel;
     private JButton diariClinicButton;
 
     public MedicoDiBase() {
@@ -41,7 +43,7 @@ public class MedicoDiBase extends JFrame {
                     }
                 };
         tabellaDati.setModel(dataModel);
-        diariClinicButton.addActionListener(e -> {
+        diariClinici.addActionListener(e -> {
             new diariClinici();
         });
     }
