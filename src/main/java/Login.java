@@ -24,8 +24,8 @@ public class Login extends JFrame {
     public Login() throws ClassNotFoundException, SQLException {
         setTitle("Login Covid19 Manager");
         setContentPane(mainPanel);
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);
+        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3,
+                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         Class.forName("com.mysql.jdbc.Driver");

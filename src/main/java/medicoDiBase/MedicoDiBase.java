@@ -19,7 +19,6 @@ public class MedicoDiBase extends JFrame {
     private JButton diariClinici;
     private JLabel cercaLabel;
     private JLabel oppureLabel;
-    private JButton diariClinicButton;
 
     public MedicoDiBase() {
         setTitle("Gestione medico di base");
