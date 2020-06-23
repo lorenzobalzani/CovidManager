@@ -1,7 +1,5 @@
 package Model;
 
-import Controller.Ruoli;
-
 public class OperatoreSanitario {
     private String CF;
     private Ruoli tipo;

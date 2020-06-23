@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.OperatoreSanitario;
+import Model.Ruoli;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
