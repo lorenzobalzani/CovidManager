@@ -92,9 +92,7 @@ public class DiariClinici extends JFrame {
             } else {
                 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                statement = "# noinspection SqlInsertValues
-
-INSERT INTO DIARIO_CLINICO (CF, dataCreazione, testoDiario)" +
+                statement = "INSERT INTO DIARIO_CLINICO (CF, dataCreazione, testoDiario)" +
                         " VALUES ('" + CF + "', '" + simpleDateFormat.format(calendar.getTime()) + "', '"
                         + diario.getText() + "');";
             }
