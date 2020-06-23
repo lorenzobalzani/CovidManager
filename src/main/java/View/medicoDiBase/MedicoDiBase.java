@@ -1,14 +1,11 @@
-package medicoDiBase;
+package View.medicoDiBase;
 
-import medicoDiBase.diariClinici.diariClinici;
+import View.diariClinici.diariClinici;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MedicoDiBase extends JFrame {
     private JPanel mainPanel;
