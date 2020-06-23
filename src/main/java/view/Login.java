@@ -4,6 +4,7 @@ import controller.LoginController;
 import model.OperatoreSanitario;
 import view.epidemiologo.Epidemiologo;
 import view.medicoDiBase.MedicoDiBase;
+import view.operatoreTampone.OperatoreTampone;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,13 +18,6 @@ public class Login extends JFrame {
     private JTextField usernameField;
     private JLabel passwordLabel;
     private JLabel usernameLabel;
-
-    //Connection to DB
-    String server = "cavadev.ovh";
-    int port = 3306;
-    String database = "CovidManager";
-    String username = "balzanilo";
-    String password = "cambiami";
 
     public Login() {
         setTitle("Login Covid19 Manager");
@@ -47,6 +41,7 @@ public class Login extends JFrame {
                     case MEDICO_RESPONSABILE:
                         break;
                     case OPERATORE_DI_TAMPONE:
+                        new OperatoreTampone();
                         break;
                 }
                 dispose();
