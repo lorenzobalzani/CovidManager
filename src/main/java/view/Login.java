@@ -17,7 +17,13 @@ public class Login extends JFrame {
     private JTextField usernameField;
     private JLabel passwordLabel;
     private JLabel usernameLabel;
-    private JTextField textField3;
+
+    //Connection to DB
+    String server = "cavadev.ovh";
+    int port = 3306;
+    String database = "CovidManager";
+    String username = "balzanilo";
+    String password = "cambiami";
 
     public Login() {
         setTitle("Login Covid19 Manager");
@@ -28,7 +34,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
             Optional<OperatoreSanitario> operatoreSanitario =
-                    new LoginController("cavadev.ovh", 3306, "CovidManager")
+                    new LoginController(server, port, database, username, password)
                     .login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             if (operatoreSanitario.isPresent()) {
                 switch (operatoreSanitario.get().getTipo()) {

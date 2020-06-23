@@ -12,9 +12,10 @@ public class LoginController {
 
     private final Connection connection;
 
-    public LoginController(final String serverIP, final int port, final String database) {
+    public LoginController(final String serverIP, final int port, final String database,
+                           String username, String password) {
         DataBaseController dataBaseController = new DataBaseController(serverIP, port, database,
-                "balzanilo", "cambiami");
+                username, password);
         connection = dataBaseController.getConnection();
     }
 
