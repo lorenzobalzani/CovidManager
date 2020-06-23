@@ -25,8 +25,8 @@ public class DiariClinici extends JFrame {
 
     public DiariClinici(OperatoreSanitario medicoDiBase) {
         this.medicoDiBase = medicoDiBase;
-        dataBaseController = new DataBaseController("localhost", 3306, "CovidManager",
-                "root", "root");
+        dataBaseController = new DataBaseController("cavadev.ovh", 3306, "CovidManager",
+                "balzanilo", "cambiami");
         getPatients();
         setTitle("Diari clinici");
         setContentPane(mainPanel);

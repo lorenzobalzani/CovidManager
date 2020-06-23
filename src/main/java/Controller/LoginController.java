@@ -13,7 +13,7 @@ public class LoginController {
 
     public LoginController(final String serverIP, final int port, final String database) {
         DataBaseController dataBaseController = new DataBaseController(serverIP, port, database,
-                "root", "root");
+                "balzanilo", "cambiami");
         connection = dataBaseController.getConnection();
     }
 

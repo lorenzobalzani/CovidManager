@@ -28,7 +28,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
             Optional<OperatoreSanitario> operatoreSanitario =
-                    new LoginController("localhost", 3306, "CovidManager")
+                    new LoginController("cavadev.ovh", 3306, "CovidManager")
                     .login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             if (operatoreSanitario.isPresent()) {
                 switch (operatoreSanitario.get().getTipo()) {
