@@ -34,7 +34,7 @@ public class Login extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
             Optional<OperatoreSanitario> operatoreSanitario =
-                    new LoginController(server, port, database, username, password)
+                    new LoginController()
                     .login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             if (operatoreSanitario.isPresent()) {
                 switch (operatoreSanitario.get().getTipo()) {
