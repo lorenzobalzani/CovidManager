@@ -2,29 +2,41 @@ package Controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataBaseController {
     private String connectionUrl;
+    private String username;
+    private String password;
     private Connection connection;
 
-    public DataBaseController(String serverIP, int port, String database) {
+    public DataBaseController(final String serverIP, final int port, final String database, final String username,
+                              final String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            setConnectionUrl(serverIP, port, database);
-            connection = DriverManager.getConnection(connectionUrl, "root", "root");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        this.username = username;
+        this.password = password;
+        setConnectionUrl(serverIP, port, database);
+        setConnection();
+    }
+
+    public void setConnectionUrl(final String serverIP, final int port, final String database) {
+        connectionUrl = "jdbc:mysql://" + serverIP + ":" + port +
+                "/" + database + "?useUnicode=true";
     }
 
     public Connection getConnection() {
         return connection;
     }
 
-    private void setConnectionUrl(String serverIP, int port, String database) {
-        connectionUrl = "jdbc:mysql://" + serverIP + ":" + port +
-                "/" + database + "?useUnicode=true";
+    private void setConnection() {
+        try {
+            connection = DriverManager.getConnection(connectionUrl, username, password);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

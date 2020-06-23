@@ -28,10 +28,9 @@ public class Login extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
-            DataBaseController dbController = new DataBaseController("localhost", 3306,
-                    "users");
-            Ruoli risultatoQuery =  LoginController.login(usernameField.getText(),
-               String.valueOf(passwordField.getPassword()), dbController.getConnection());
+            Ruoli risultatoQuery =
+                    new LoginController("localhost", 3306, "users")
+                    .login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             switch (risultatoQuery) {
                 case EPIDEMIOLOGO:
                     new Epidemiologo();
