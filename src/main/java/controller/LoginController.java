@@ -10,13 +10,10 @@ import java.util.Optional;
 
 public class LoginController {
 
-    private final Connection connection;
+    private DataBaseController dataBaseController;
 
-    public LoginController(final String serverIP, final int port, final String database,
-                           String username, String password) {
-        DataBaseController dataBaseController = new DataBaseController(serverIP, port, database,
-                username, password);
-        connection = dataBaseController.getConnection();
+    public LoginController() {
+        dataBaseController = new DataBaseController();
     }
 
     /**
@@ -28,7 +25,8 @@ public class LoginController {
     public Optional<OperatoreSanitario> login(final String inputUsername, final String password) {
         var operatoreSanitario = new OperatoreSanitario();
         try {
-            ResultSet rs = connection.prepareStatement("SELECT CF, tipo FROM CREDENZIALI WHERE " +
+            ResultSet rs = dataBaseController.getConnection().prepareStatement
+                    ("SELECT CF, tipo FROM CREDENZIALI WHERE " +
                     "username='" + inputUsername + "' AND hashedPassword='" + password + "';").executeQuery();
             boolean noResult = true;
             while (rs.next()) {
@@ -50,7 +48,8 @@ public class LoginController {
                noResult = false;
             }
             rs.close();
-            connection.close();
+            dataBaseController.getConnection().close();
+            dataBaseController = null;
             if (noResult) {
                 return Optional.empty();
             } else {

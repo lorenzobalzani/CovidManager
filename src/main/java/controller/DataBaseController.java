@@ -6,26 +6,21 @@ import java.sql.SQLException;
 
 public class DataBaseController {
     private String connectionUrl;
-    private final String username;
-    private final String password;
     private Connection connection;
 
-    public DataBaseController(final String serverIP, final int port, final String database, final String username,
-                              final String password) {
+    public DataBaseController() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        this.username = username;
-        this.password = password;
-        setConnectionUrl(serverIP, port, database);
+        setConnectionUrl();
         setConnection();
     }
 
-    public void setConnectionUrl(final String serverIP, final int port, final String database) {
-        connectionUrl = "jdbc:mysql://" + serverIP + ":" + port +
-                "/" + database + "?useUnicode=true";
+    public void setConnectionUrl() {
+        connectionUrl = "jdbc:mysql://" + DatabaseInfo.server + ":" + DatabaseInfo.port +
+                "/" + DatabaseInfo.database + "?useUnicode=true";
     }
 
     public Connection getConnection() {
@@ -34,7 +29,7 @@ public class DataBaseController {
 
     private void setConnection() {
         try {
-            connection = DriverManager.getConnection(connectionUrl, username, password);
+            connection = DriverManager.getConnection(connectionUrl, DatabaseInfo.username, DatabaseInfo.password);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
