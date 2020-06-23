@@ -11,7 +11,7 @@ public class Epidemiologo extends JFrame {
     private JTextField cercaDati;
 
     public Epidemiologo()  {
-        setTitle("Gestione View.epidemiologo");
+        setTitle("Gestione Epidemiologo");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);

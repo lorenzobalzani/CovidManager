@@ -11,7 +11,6 @@ public class diariClinici extends JFrame {
     private JButton salvaButton;
     private JButton defaultButton;
     private JLabel selectLabel;
-    private JButton diariClinicButton;
 
     public diariClinici() {
         setTitle("Diari clinici");
@@ -19,8 +18,5 @@ public class diariClinici extends JFrame {
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
-        diariClinicButton.addActionListener(e -> {
-            new diariClinici();
-        });
     }
 }

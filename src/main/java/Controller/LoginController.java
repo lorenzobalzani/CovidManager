@@ -32,7 +32,7 @@ public class LoginController {
         }
         //TODO
         if (true) {
-            return Ruoli.EPIDEMIOLOGO;
+            return Ruoli.MEDICO_DI_BASE;
         } else {
             return Ruoli.NESSUN_RUOLO;
         }
