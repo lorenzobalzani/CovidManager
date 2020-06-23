@@ -1,5 +1,6 @@
 package View.medicoDiBase;
 
+import Model.OperatoreSanitario;
 import View.diariClinici.diariClinici;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class MedicoDiBase extends JFrame {
     private JLabel cercaLabel;
     private JLabel oppureLabel;
 
-    public MedicoDiBase() {
+    public MedicoDiBase(OperatoreSanitario medicoDiBase) {
         setTitle("Gestione medico di base");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
@@ -40,7 +41,7 @@ public class MedicoDiBase extends JFrame {
                 };
         tabellaDati.setModel(dataModel);
         diariClinici.addActionListener(e -> {
-            new diariClinici();
+            new diariClinici(medicoDiBase);
         });
     }
 }

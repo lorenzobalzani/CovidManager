@@ -45,9 +45,10 @@
           <component id="50a31" class="javax.swing.JTextField" binding="usernameField">
             <constraints/>
             <properties>
+              <dropMode value="INSERT"/>
               <font size="20"/>
               <text value=""/>
-              <toolTipText value="isiis"/>
+              <toolTipText value=""/>
             </properties>
             <clientProperties>
               <caretWidth class="java.lang.Integer" value="300"/>
@@ -84,7 +85,7 @@
             <constraints/>
             <properties>
               <font size="20"/>
-              <text value="Inserisci password..."/>
+              <text value=""/>
             </properties>
             <clientProperties>
               <caretAspectRatio class="java.lang.Double" value="100.0"/>

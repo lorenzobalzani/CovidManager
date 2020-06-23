@@ -2,14 +2,13 @@ package View;
 
 import Controller.LoginController;
 import Controller.Ruoli;
-import Controller.DataBaseController;
+import Model.OperatoreSanitario;
 import View.epidemiologo.Epidemiologo;
 import View.medicoDiBase.MedicoDiBase;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
-
+import java.util.Optional;
 
 public class Login extends JFrame {
     private JPanel mainPanel;
@@ -28,26 +27,27 @@ public class Login extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
-            Ruoli risultatoQuery =
-                    new LoginController("localhost", 3306, "users")
+            Optional<OperatoreSanitario> operatoreSanitario =
+                    new LoginController("localhost", 3306, "CovidManager")
                     .login(usernameField.getText(), String.valueOf(passwordField.getPassword()));
-            switch (risultatoQuery) {
-                case EPIDEMIOLOGO:
-                    new Epidemiologo();
-                    break;
-                case MEDICO_DI_BASE:
-                    new MedicoDiBase();
-                    break;
-                case MEDICO_RESPOSNABILE:
-                    break;
-                case OPERATORE_DI_TAMPONE:
-                    break;
-                case NESSUN_RUOLO:
-                    JOptionPane.showMessageDialog(this,
-                            "Prego rivedere le proprie credenziali!",
-                            "Credenziali errate",
-                            JOptionPane.WARNING_MESSAGE);
-                    break;
+            if (operatoreSanitario.isPresent()) {
+                switch (operatoreSanitario.get().getTipo()) {
+                    case EPIDEMIOLOGO:
+                        new Epidemiologo();
+                        break;
+                    case MEDICO_DI_BASE:
+                        new MedicoDiBase(operatoreSanitario.get());
+                        break;
+                    case MEDICO_RESPONSABILE:
+                        break;
+                    case OPERATORE_DI_TAMPONE:
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "",
+                        "Credenziali errate",
+                        JOptionPane.WARNING_MESSAGE);
             }
             dispose();
         });

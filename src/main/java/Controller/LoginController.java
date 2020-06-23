@@ -1,8 +1,11 @@
 package Controller;
 
+import Model.OperatoreSanitario;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class LoginController {
 
@@ -16,25 +19,42 @@ public class LoginController {
 
     /**
      * It queries the DB checking for user presence.
-     * @param username -- clear username
+     * @param inputUsername -- clear username
      * @param password -- hashed password
-     * @return the rule of the user
+     * @return the model of the user
      */
-    public Ruoli login(final String username, final String password) {
+    public Optional<OperatoreSanitario> login(final String inputUsername, final String password) {
+        var operatoreSanitario = new OperatoreSanitario();
         try {
-            ResultSet rs = connection.prepareStatement("SHOW TABLES;").executeQuery();
-            while(rs.next()){
-                String s = rs.getString(1);
-                System.out.println(s);
+            ResultSet rs = connection.prepareStatement("SELECT CF, tipo FROM CREDENZIALI WHERE " +
+                    "username='" + inputUsername + "' AND hashedPassword='" + password + "';").executeQuery();
+            boolean noResult = true;
+            while (rs.next()) {
+                operatoreSanitario.setCF(rs.getString("CF"));
+                switch (rs.getString("tipo")) {
+                    case "MEDICO_DI_BASE":
+                        operatoreSanitario.setTipo(Ruoli.MEDICO_DI_BASE);
+                        break;
+                    case "MEDICO_RESPONSABILE":
+                        operatoreSanitario.setTipo(Ruoli.MEDICO_RESPONSABILE);
+                        break;
+                    case "OPERATORE_DI_TAMPONE":
+                        operatoreSanitario.setTipo(Ruoli.OPERATORE_DI_TAMPONE);
+                        break;
+                    case "EPIDEMIOLOGO":
+                        operatoreSanitario.setTipo(Ruoli.EPIDEMIOLOGO);
+                        break;
+                }
+               noResult = false;
+            }
+            if (noResult) {
+                return Optional.empty();
+            } else {
+                return Optional.of(operatoreSanitario);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        //TODO
-        if (true) {
-            return Ruoli.MEDICO_DI_BASE;
-        } else {
-            return Ruoli.NESSUN_RUOLO;
-        }
+        return Optional.empty();
     }
 }
