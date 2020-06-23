@@ -1,7 +1,6 @@
 package View;
 
 import Controller.LoginController;
-import Controller.Ruoli;
 import Model.OperatoreSanitario;
 import View.epidemiologo.Epidemiologo;
 import View.medicoDiBase.MedicoDiBase;
@@ -14,10 +13,11 @@ public class Login extends JFrame {
     private JPanel mainPanel;
     private JPasswordField passwordField;
     private JLabel welcomeLabel;
-    private JLabel usernameLabel;
     private JButton loginButton;
     private JTextField usernameField;
     private JLabel passwordLabel;
+    private JLabel usernameLabel;
+    private JTextField textField3;
 
     public Login() {
         setTitle("Login Covid19 Manager");
@@ -43,18 +43,17 @@ public class Login extends JFrame {
                     case OPERATORE_DI_TAMPONE:
                         break;
                 }
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "",
+                        "Prego ricontrollare le credenziali!",
                         "Credenziali errate",
                         JOptionPane.WARNING_MESSAGE);
             }
-            dispose();
         });
     }
 
     public static void main(String[] args) {
         new Login();
     }
-
 }

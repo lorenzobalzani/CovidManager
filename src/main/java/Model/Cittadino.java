@@ -67,9 +67,6 @@ public class Cittadino {
 
     @Override
     public String toString() {
-        return "Cittadino{" +
-                "nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                '}';
+        return nome + " " + cognome;
     }
 }

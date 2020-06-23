@@ -1,7 +1,7 @@
 package View.medicoDiBase;
 
 import Model.OperatoreSanitario;
-import View.diariClinici.diariClinici;
+import View.diariClinici.DiariClinici;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -41,7 +41,7 @@ public class MedicoDiBase extends JFrame {
                 };
         tabellaDati.setModel(dataModel);
         diariClinici.addActionListener(e -> {
-            new diariClinici(medicoDiBase);
+            new DiariClinici(medicoDiBase);
         });
     }
 }

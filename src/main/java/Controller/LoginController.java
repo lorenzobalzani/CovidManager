@@ -47,6 +47,8 @@ public class LoginController {
                 }
                noResult = false;
             }
+            rs.close();
+            connection.close();
             if (noResult) {
                 return Optional.empty();
             } else {

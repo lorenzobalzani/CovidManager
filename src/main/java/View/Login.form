@@ -27,32 +27,26 @@
           <text value="Benvenuto, prego loggati"/>
         </properties>
       </component>
-      <grid id="fe39e" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
+      <grid id="fe39e" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="d3d5a" class="javax.swing.JLabel" binding="usernameLabel">
+          <component id="93381" class="javax.swing.JLabel" binding="usernameLabel">
             <constraints/>
             <properties>
               <font size="20"/>
               <text value="Username"/>
             </properties>
           </component>
-          <component id="50a31" class="javax.swing.JTextField" binding="usernameField">
+          <component id="428e" class="javax.swing.JTextField" binding="usernameField">
             <constraints/>
             <properties>
-              <dropMode value="INSERT"/>
-              <font size="20"/>
-              <text value=""/>
-              <toolTipText value=""/>
+              <columns value="25"/>
             </properties>
-            <clientProperties>
-              <caretWidth class="java.lang.Integer" value="300"/>
-            </clientProperties>
           </component>
         </children>
       </grid>
@@ -81,16 +75,11 @@
               <text value="Password"/>
             </properties>
           </component>
-          <component id="1df59" class="javax.swing.JPasswordField" binding="passwordField">
+          <component id="28151" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints/>
             <properties>
-              <font size="20"/>
-              <text value=""/>
+              <columns value="25"/>
             </properties>
-            <clientProperties>
-              <caretAspectRatio class="java.lang.Double" value="100.0"/>
-              <caretWidth class="java.lang.Integer" value="100"/>
-            </clientProperties>
           </component>
         </children>
       </grid>
