@@ -1,9 +1,9 @@
-package View;
+package view;
 
-import Controller.LoginController;
-import Model.OperatoreSanitario;
-import View.epidemiologo.Epidemiologo;
-import View.medicoDiBase.MedicoDiBase;
+import controller.LoginController;
+import model.OperatoreSanitario;
+import view.epidemiologo.Epidemiologo;
+import view.medicoDiBase.MedicoDiBase;
 
 import javax.swing.*;
 import java.awt.*;

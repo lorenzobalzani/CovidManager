@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DataBaseController {
     private String connectionUrl;
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     private Connection connection;
 
     public DataBaseController(final String serverIP, final int port, final String database, final String username,

@@ -1,4 +1,4 @@
-package View.epidemiologo;
+package view.epidemiologo;
 
 import javax.swing.*;
 import java.awt.*;

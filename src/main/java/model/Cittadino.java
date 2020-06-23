@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Cittadino {
     private String CF;

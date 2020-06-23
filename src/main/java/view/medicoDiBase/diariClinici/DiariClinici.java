@@ -1,8 +1,8 @@
-package View.diariClinici;
+package view.medicoDiBase.diariClinici;
 
-import Controller.DataBaseController;
-import Model.Cittadino;
-import Model.OperatoreSanitario;
+import controller.DataBaseController;
+import model.Cittadino;
+import model.OperatoreSanitario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,15 +24,16 @@ public class DiariClinici extends JFrame {
     private final OperatoreSanitario medicoDiBase;
 
     public DiariClinici(OperatoreSanitario medicoDiBase) {
-        this.medicoDiBase = medicoDiBase;
-        dataBaseController = new DataBaseController("cavadev.ovh", 3306, "CovidManager",
-                "balzanilo", "cambiami");
-        getPatients();
         setTitle("Diari clinici");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
+        this.medicoDiBase = medicoDiBase;
+        dataBaseController = new DataBaseController("cavadev.ovh", 3306, "CovidManager",
+                "balzanilo", "cambiami");
+        getPatients();
+        queryDiary();
         patients.addActionListener(e -> queryDiary());
         defaultButton.addActionListener(e -> queryDiary());
         saveButton.addActionListener(e -> saveDiary());
@@ -91,7 +92,9 @@ public class DiariClinici extends JFrame {
             } else {
                 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                statement = "INSERT INTO DIARIO_CLINICO (CF, dataCreazione, testoDiario)" +
+                statement = "# noinspection SqlInsertValues
+
+INSERT INTO DIARIO_CLINICO (CF, dataCreazione, testoDiario)" +
                         " VALUES ('" + CF + "', '" + simpleDateFormat.format(calendar.getTime()) + "', '"
                         + diario.getText() + "');";
             }

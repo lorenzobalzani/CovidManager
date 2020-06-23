@@ -1,7 +1,7 @@
-package Controller;
+package controller;
 
-import Model.OperatoreSanitario;
-import Model.Ruoli;
+import model.OperatoreSanitario;
+import model.Ruoli;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
