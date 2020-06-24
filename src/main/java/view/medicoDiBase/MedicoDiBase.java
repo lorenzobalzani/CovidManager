@@ -10,6 +10,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,20 +34,29 @@ public class MedicoDiBase extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.medicoDiBase = medicoDiBase;
-        queryPatients();
+        queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
+                " WHERE MED_CF='" +
+                medicoDiBase.getCF() +
+                "' AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
+                "            FROM STATO_SALUTE S\n" +
+                "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
+        cercaButton.addActionListener(e -> {
+            String text = cercaTextField.getText();
+            queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
+                    " WHERE MED_CF='" +
+                    medicoDiBase.getCF() + "' AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
+                    text + "%' OR tipo LIKE '%" + text + "%' OR data LIKE '%" + text + "%' OR C.CF LIKE '%" +
+                    text + "%') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
+                    " FROM STATO_SALUTE S\n" +
+                    " WHERE S.CF = C.CF);");
+        });
     }
 
-    private void queryPatients() {
+    private void queryPatients(String statement) {
         String[] columnNames = {"CF", "Nome", "Cognome", "Stato salute", "Data"};
         DataBaseController dataBaseController = new DataBaseController();
         try {
-            String statement = "SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
-                    " WHERE MED_CF='" +
-                    medicoDiBase.getCF() +
-                    "' AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
-                    "            FROM STATO_SALUTE S\n" +
-                    "            WHERE S.CF = C.CF);";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {

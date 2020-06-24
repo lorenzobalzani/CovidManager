@@ -62,7 +62,7 @@
             <properties>
               <columns value="0"/>
               <font size="20"/>
-              <horizontalAlignment value="0"/>
+              <horizontalAlignment value="2"/>
               <text value="Inserisci la chiave di ricerca..."/>
             </properties>
           </component>
