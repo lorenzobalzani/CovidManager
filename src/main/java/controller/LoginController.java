@@ -26,11 +26,11 @@ public class LoginController {
         var operatoreSanitario = new OperatoreSanitario();
         try {
             ResultSet rs = dataBaseController.getConnection().prepareStatement
-                    ("SELECT CF, tipo FROM CREDENZIALI WHERE " +
+                    ("SELECT * FROM CREDENZIALI WHERE " +
                     "username='" + inputUsername + "' AND hashedPassword='" + password + "';").executeQuery();
             boolean noResult = true;
             while (rs.next()) {
-                operatoreSanitario.setCF(rs.getString("CF"));
+                operatoreSanitario.setCF(rs.getString("LOG_CF"));
                 switch (rs.getString("tipo")) {
                     case "MEDICO_DI_BASE":
                         operatoreSanitario.setTipo(Ruoli.MEDICO_DI_BASE);

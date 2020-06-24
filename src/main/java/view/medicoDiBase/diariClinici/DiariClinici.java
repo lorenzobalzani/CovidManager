@@ -40,7 +40,7 @@ public class DiariClinici extends JFrame {
         DataBaseController dataBaseController = new DataBaseController();
         try {
             String statement = "SELECT * FROM CITTADINO" +
-                    " WHERE PAZ_CF='" +
+                    " WHERE MED_CF='" +
                     medicoDiBase.getCF() +
                     "';";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();

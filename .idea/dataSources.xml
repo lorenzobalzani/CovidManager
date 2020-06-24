@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL - users@localhost" uuid="d66c9b33-fc1c-478c-8fd5-39ca202cbdfa">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/users</jdbc-url>
-      <driver-properties>
-        <property name="serverTimezone" value="UTC" />
-      </driver-properties>
-    </data-source>
     <data-source source="LOCAL" name="Cava" uuid="b26dbbfa-7e09-4082-8606-1d78465c15c7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
