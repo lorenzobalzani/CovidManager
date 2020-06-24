@@ -24,6 +24,7 @@ public class MedicoDiBase extends JFrame {
     private JButton diariClinici;
     private JLabel cercaLabel;
     private JButton cercaButton;
+    private JButton impostazioniButton;
     private OperatoreSanitario medicoDiBase;
 
     public MedicoDiBase(OperatoreSanitario medicoDiBase) {
@@ -42,6 +43,7 @@ public class MedicoDiBase extends JFrame {
                 "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
+        impostazioniButton.addActionListener(e -> new impostazioniMedicoDiBase(medicoDiBase));
     }
 
     private void search(String text) {

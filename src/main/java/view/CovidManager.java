@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Optional;
 
-public class Login extends JFrame {
+public class CovidManager extends JFrame {
     private JPanel mainPanel;
     private JPasswordField passwordField;
     private JLabel welcomeLabel;
@@ -19,8 +19,8 @@ public class Login extends JFrame {
     private JLabel passwordLabel;
     private JLabel usernameLabel;
 
-    public Login() {
-        setTitle("Login Covid19 Manager");
+    public CovidManager() {
+        setTitle("Login CovidManager");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
@@ -55,6 +55,6 @@ public class Login extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Login();
+        new CovidManager();
     }
 }

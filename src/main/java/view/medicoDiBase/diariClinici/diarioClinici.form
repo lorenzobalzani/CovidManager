@@ -93,7 +93,9 @@
           </grid>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="false"/>
+        </properties>
       </component>
     </children>
   </grid>
