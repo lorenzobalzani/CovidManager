@@ -5,6 +5,7 @@ import model.Cittadino;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ public class DiariClinici extends JFrame {
     private JButton saveButton;
     private JButton defaultButton;
     private JLabel selectLabel;
+    private JTable tabellaDati;
     private final OperatoreSanitario medicoDiBase;
 
     public DiariClinici(OperatoreSanitario medicoDiBase) {
@@ -29,14 +31,18 @@ public class DiariClinici extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         this.medicoDiBase = medicoDiBase;
-        getPatients();
+        queryPatient();
         queryDiary();
-        patients.addActionListener(e -> queryDiary());
+        queryInfo();
+        patients.addActionListener(e -> {
+            queryDiary();
+            queryInfo();
+        });
         defaultButton.addActionListener(e -> queryDiary());
         saveButton.addActionListener(e -> saveDiary());
     }
 
-    private void getPatients(){
+    private void queryPatient(){
         DataBaseController dataBaseController = new DataBaseController();
         try {
             String statement = "SELECT * FROM CITTADINO" +
@@ -51,6 +57,28 @@ public class DiariClinici extends JFrame {
                 cittadino.setCognome(rs.getString("cognome"));
                 patients.addItem(cittadino);
             }
+            dataBaseController = null;
+            rs.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void queryInfo() {
+        String[] columnNames = {"Stato salute", "Data"};
+        DataBaseController dataBaseController = new DataBaseController();
+        String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
+        try {
+            String statement = "SELECT * FROM STATO_SALUTE" +
+                    " WHERE CF='" + CF + "';";
+            ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+            while (rs.next()) {
+                String tipo = rs.getString("tipo");
+                String data = rs.getString("data");
+                tableModel.addRow(new String[]{tipo, data});
+            }
+            tabellaDati.setModel(tableModel);
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {

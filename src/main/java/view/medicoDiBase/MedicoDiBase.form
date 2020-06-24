@@ -2,6 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.medicoDiBase.MedicoDiBase">
   <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
     <rowspec value="center:0px:grow"/>
+    <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:47px:noGrow"/>
     <rowspec value="center:132px:grow"/>
     <colspec value="fill:d:grow"/>
@@ -22,12 +23,12 @@
         <properties>
           <font size="36"/>
           <horizontalTextPosition value="10"/>
-          <text value="Medico di base"/>
+          <text value="Medico di base - riepilogo dati"/>
         </properties>
       </component>
       <scrollpane id="73bbb" binding="scrollPane1">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties>
@@ -43,7 +44,7 @@
       </scrollpane>
       <grid id="868c0" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties/>
@@ -60,10 +61,10 @@
           <component id="5df0b" class="javax.swing.JTextField" binding="cercaTextField">
             <constraints/>
             <properties>
-              <columns value="0"/>
+              <columns value="14"/>
               <font size="20"/>
               <horizontalAlignment value="2"/>
-              <text value="Inserisci la chiave di ricerca..."/>
+              <text value=""/>
             </properties>
           </component>
           <component id="8a028" class="javax.swing.JButton" binding="cercaButton">

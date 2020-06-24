@@ -41,16 +41,17 @@ public class MedicoDiBase extends JFrame {
                 "            FROM STATO_SALUTE S\n" +
                 "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
-        cercaButton.addActionListener(e -> {
-            String text = cercaTextField.getText();
-            queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
-                    " WHERE MED_CF='" +
-                    medicoDiBase.getCF() + "' AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
-                    text + "%' OR tipo LIKE '%" + text + "%' OR data LIKE '%" + text + "%' OR C.CF LIKE '%" +
-                    text + "%') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
-                    " FROM STATO_SALUTE S\n" +
-                    " WHERE S.CF = C.CF);");
-        });
+        cercaButton.addActionListener(e -> search(cercaTextField.getText()));
+    }
+
+    private void search(String text) {
+        queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
+                " WHERE MED_CF='" +
+                medicoDiBase.getCF() + "' AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
+                text + "%' OR tipo LIKE '%" + text + "%' OR data LIKE '%" + text + "%' OR C.CF LIKE '%" +
+                text + "%') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
+                " FROM STATO_SALUTE S\n" +
+                " WHERE S.CF = C.CF);");
     }
 
     private void queryPatients(String statement) {
