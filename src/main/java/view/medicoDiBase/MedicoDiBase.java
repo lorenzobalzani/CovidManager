@@ -1,12 +1,17 @@
 package view.medicoDiBase;
 
+import controller.DataBaseController;
+import model.Cittadino;
 import model.OperatoreSanitario;
 import view.medicoDiBase.diariClinici.DiariClinici;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MedicoDiBase extends JFrame {
     private JPanel mainPanel;
@@ -16,7 +21,8 @@ public class MedicoDiBase extends JFrame {
     private JTextField cercaTextField;
     private JButton diariClinici;
     private JLabel cercaLabel;
-    private JLabel oppureLabel;
+    private JButton cercaButton;
+    private OperatoreSanitario medicoDiBase;
 
     public MedicoDiBase(OperatoreSanitario medicoDiBase) {
         setTitle("Gestione medico di base");
@@ -25,21 +31,37 @@ public class MedicoDiBase extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        TableModel dataModel = new
-                AbstractTableModel() {
-                    public int getColumnCount() {
-                        return 10;
-                    }
-
-                    public int getRowCount() {
-                        return 10;
-                    }
-
-                    public Object getValueAt(int row, int col) {
-                        return row * col;
-                    }
-                };
-        tabellaDati.setModel(dataModel);
+        this.medicoDiBase = medicoDiBase;
+        queryPatients();
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
+    }
+
+    private void queryPatients() {
+        String[] columnNames = {"CF", "Nome", "Cognome", "Stato salute", "Data"};
+        DataBaseController dataBaseController = new DataBaseController();
+        try {
+            String statement = "SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
+                    " WHERE MED_CF='" +
+                    medicoDiBase.getCF() +
+                    "' AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
+                    "            FROM STATO_SALUTE S\n" +
+                    "            WHERE S.CF = C.CF);";
+            ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+            while (rs.next()) {
+                String CF = rs.getString("C.CF");
+                String nome = rs.getString("C.nome");
+                String cognome = rs.getString("C.cognome");
+                String statoSalute = rs.getString("S.tipo");
+                String dataStatoSalute = rs.getString("S.data");
+                tableModel.addRow(new String[]{CF, nome, cognome, statoSalute,
+                        dataStatoSalute});
+            }
+            tabellaDati.setModel(tableModel);
+            dataBaseController = null;
+            rs.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -66,12 +66,11 @@
               <text value="Inserisci la chiave di ricerca..."/>
             </properties>
           </component>
-          <component id="79c84" class="javax.swing.JLabel" binding="oppureLabel">
+          <component id="8a028" class="javax.swing.JButton" binding="cercaButton">
             <constraints/>
             <properties>
               <font size="20"/>
-              <horizontalAlignment value="0"/>
-              <text value="oppure"/>
+              <text value="Cerca"/>
             </properties>
           </component>
           <component id="b3df5" class="javax.swing.JButton" binding="diariClinici">

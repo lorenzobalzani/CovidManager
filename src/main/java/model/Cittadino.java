@@ -8,6 +8,7 @@ public class Cittadino {
     private String genere;
     private String comuneResidenza;
     private String telefono;
+    private StatoSalute statoSalute;
 
     public String getCF() {
         return CF;
@@ -63,6 +64,14 @@ public class Cittadino {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public StatoSalute getStatoSalute() {
+        return statoSalute;
+    }
+
+    public void setStatoSalute(StatoSalute statoSalute) {
+        this.statoSalute = statoSalute;
     }
 
     @Override
