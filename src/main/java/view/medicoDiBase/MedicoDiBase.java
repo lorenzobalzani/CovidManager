@@ -2,12 +2,15 @@ package view.medicoDiBase;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;
-import view.impostazioni;
+import view.Impostazioni;
 import view.medicoDiBase.diariClinici.DiariClinici;
+import view.medicoDiBase.referti.Referti;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,12 +24,13 @@ public class MedicoDiBase extends JFrame {
     private JLabel cercaLabel;
     private JButton cercaButton;
     private JButton impostazioniButton;
+    private JButton refertiButton;
     private OperatoreSanitario medicoDiBase;
 
     public MedicoDiBase(OperatoreSanitario medicoDiBase) {
         setTitle("Gestione medico di base");
         setContentPane(mainPanel);
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 1.5f),
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,7 +43,8 @@ public class MedicoDiBase extends JFrame {
                 "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
-        impostazioniButton.addActionListener(e -> new impostazioni(medicoDiBase));
+        impostazioniButton.addActionListener(e -> new Impostazioni(medicoDiBase));
+        refertiButton.addActionListener(e -> new Referti(medicoDiBase));
     }
 
     private void search(String text) {

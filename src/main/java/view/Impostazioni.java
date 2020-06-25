@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class impostazioni extends JFrame {
+public class Impostazioni extends JFrame {
     private JPanel mainPanel;
     private JButton salvaPasswordButton;
     private JButton salvaUsernameButton;
@@ -17,7 +17,7 @@ public class impostazioni extends JFrame {
     private JPasswordField newPasswordTextField;
     private OperatoreSanitario operatoreSanitario;
 
-    public impostazioni(OperatoreSanitario operatoreSanitario) throws HeadlessException {
+    public Impostazioni(OperatoreSanitario operatoreSanitario) throws HeadlessException {
         setTitle("Impostazioni");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,

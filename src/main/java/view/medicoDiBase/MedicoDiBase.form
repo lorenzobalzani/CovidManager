@@ -9,7 +9,7 @@
     <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:max(d;4px):noGrow"/>
     <constraints>
-      <xy x="43" y="150" width="727" height="337"/>
+      <xy x="43" y="150" width="926" height="337"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -84,6 +84,13 @@
               <font size="20"/>
               <horizontalAlignment value="0"/>
               <text value="Visualizza diari clinici"/>
+            </properties>
+          </component>
+          <component id="e12e2" class="javax.swing.JButton" binding="refertiButton">
+            <constraints/>
+            <properties>
+              <font size="20"/>
+              <text value="Visualizza referti"/>
             </properties>
           </component>
         </children>
