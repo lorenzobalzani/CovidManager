@@ -1,17 +1,13 @@
 package view.medicoDiBase;
 
 import controller.DataBaseController;
-import model.Cittadino;
 import model.OperatoreSanitario;
+import view.impostazioni;
 import view.medicoDiBase.diariClinici.DiariClinici;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -43,7 +39,7 @@ public class MedicoDiBase extends JFrame {
                 "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
-        impostazioniButton.addActionListener(e -> new impostazioniMedicoDiBase(medicoDiBase));
+        impostazioniButton.addActionListener(e -> new impostazioni(medicoDiBase));
     }
 
     private void search(String text) {

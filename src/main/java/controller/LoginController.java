@@ -2,8 +2,8 @@ package controller;
 
 import model.OperatoreSanitario;
 import model.Ruoli;
+import utility.EncryptionUtility;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -25,9 +25,12 @@ public class LoginController {
     public Optional<OperatoreSanitario> login(final String inputUsername, final String password) {
         var operatoreSanitario = new OperatoreSanitario();
         try {
+            if (!EncryptionUtility.checkPassword(inputUsername, password)) {
+                return Optional.empty();
+            }
             ResultSet rs = dataBaseController.getConnection().prepareStatement
                     ("SELECT * FROM CREDENZIALI WHERE " +
-                    "username='" + inputUsername + "' AND hashedPassword='" + password + "';").executeQuery();
+                    "username='" + inputUsername +"';").executeQuery();
             boolean noResult = true;
             while (rs.next()) {
                 operatoreSanitario.setCF(rs.getString("CF"));
@@ -45,7 +48,8 @@ public class LoginController {
                         operatoreSanitario.setTipo(Ruoli.EPIDEMIOLOGO);
                         break;
                 }
-               noResult = false;
+                operatoreSanitario.setUsername(inputUsername);
+                noResult = false;
             }
             rs.close();
             dataBaseController.getConnection().close();
@@ -60,4 +64,5 @@ public class LoginController {
         }
         return Optional.empty();
     }
+
 }

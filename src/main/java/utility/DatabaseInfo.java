@@ -1,4 +1,4 @@
-package controller;
+package utility;
 
 public class DatabaseInfo {
     public static String server = "cavadev.ovh";
