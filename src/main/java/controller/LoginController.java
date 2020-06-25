@@ -30,7 +30,7 @@ public class LoginController {
                     "username='" + inputUsername + "' AND hashedPassword='" + password + "';").executeQuery();
             boolean noResult = true;
             while (rs.next()) {
-                operatoreSanitario.setCF(rs.getString("LOG_CF"));
+                operatoreSanitario.setCF(rs.getString("CF"));
                 switch (rs.getString("tipo")) {
                     case "MEDICO_DI_BASE":
                         operatoreSanitario.setTipo(Ruoli.MEDICO_DI_BASE);

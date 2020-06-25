@@ -35,10 +35,10 @@ public class MedicoDiBase extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.medicoDiBase = medicoDiBase;
-        queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
-                " WHERE MED_CF='" +
+        queryPatients("SELECT DISTINCT * FROM CITTADINO C, STATO_SALUTE S" +
+                " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M WHERE M.CF = '" +
                 medicoDiBase.getCF() +
-                "' AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
+                "') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
                 "            FROM STATO_SALUTE S\n" +
                 "            WHERE S.CF = C.CF);");
         diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
@@ -47,9 +47,9 @@ public class MedicoDiBase extends JFrame {
     }
 
     private void search(String text) {
-        queryPatients("SELECT DISTINCT * FROM CITTADINO C , STATO_SALUTE S" +
-                " WHERE MED_CF='" +
-                medicoDiBase.getCF() + "' AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
+        queryPatients("SELECT DISTINCT * FROM CITTADINO C, STATO_SALUTE S" +
+                        " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M" +
+                " WHERE M.CF = '" + medicoDiBase.getCF() + "') AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
                 text + "%' OR tipo LIKE '%" + text + "%' OR data LIKE '%" + text + "%' OR C.CF LIKE '%" +
                 text + "%') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
                 " FROM STATO_SALUTE S\n" +

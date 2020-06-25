@@ -32,7 +32,7 @@ public class impostazioniMedicoDiBase extends JFrame {
 
     private void updateUsername(String newUsername) {
         DataBaseController dataBaseController = new DataBaseController();
-        String statement = "UPDATE CREDENZIALI SET username='" + newUsername + "' WHERE LOG_CF='"
+        String statement = "UPDATE CREDENZIALI SET username='" + newUsername + "' WHERE CF='"
                 + medicoDiBase.getCF() + "';";
         try {
             dataBaseController.getConnection().prepareStatement(statement).executeUpdate();
