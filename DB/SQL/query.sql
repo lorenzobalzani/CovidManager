@@ -186,16 +186,11 @@ ORDER BY dataInizio, codiceGravita;
 
 /**
   Inserimento nuovo tampone:
-    1. Inserimento nuovo cittadino;
-    2. Dargli il ruolo di operatore di tampone;
-    3. Creazione credenziali;
-    4. Creazione tampone associato all'operatore e al cittadino designato;
-    5. Aggiornamento stato salute cittadino
+    1.Creazione tampone associato all'operatore e al cittadino designato;
+    2. Aggiornamento stato salute cittadino
  */
 
-INSERT INTO CITTADINO
-VALUES ('BNCMRO78D19E167C', 'Mario', 'Bianchi', '1968-05-19', 'Uomo', 'Ravenna', '3358944356', null);
+INSERT INTO TAMPONE VALUES ()
 
-INSERT INTO OPERATORE_DI_TAMPONE(CF)
-VALUES ('BNCMRO78D19E167C');
+
 

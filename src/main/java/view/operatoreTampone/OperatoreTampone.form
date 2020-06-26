@@ -46,7 +46,9 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="20"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="6b013" class="javax.swing.JLabel">
@@ -69,21 +71,25 @@
               <text value="Esito"/>
             </properties>
           </component>
-          <component id="3aa7d" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="3aa7d" class="javax.swing.JTextField" binding="cfTextField">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <forms defaultalign-horz="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font size="20"/>
+            </properties>
           </component>
-          <component id="a32" class="javax.swing.JComboBox" binding="esiti">
+          <component id="e66e6" class="javax.swing.JComboBox" binding="esiti">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
               <forms/>
             </constraints>
-            <properties/>
+            <properties>
+              <font size="20"/>
+            </properties>
           </component>
         </children>
       </grid>

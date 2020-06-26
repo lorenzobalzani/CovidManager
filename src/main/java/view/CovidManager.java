@@ -44,7 +44,7 @@ public class CovidManager extends JFrame {
                     case MEDICO_RESPONSABILE:
                         break;
                     case OPERATORE_DI_TAMPONE:
-                        new OperatoreTampone();
+                        new OperatoreTampone(operatoreSanitario.get());
                         break;
                 }
                 dispose();

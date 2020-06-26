@@ -44,7 +44,7 @@ public class Impostazioni extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this,
                     "Prego ricontrollare la vecchia password!",
-                    "Password errate",
+                    "Password errata",
                     JOptionPane.WARNING_MESSAGE);
         }
     }
