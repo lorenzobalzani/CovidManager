@@ -27,6 +27,7 @@ public class OperatoreTampone extends JFrame {
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         esiti.addItem("Positivo");
         esiti.addItem("Negativo");
         inserisciButton.addActionListener(e -> inserisciEsito(operatoreSanitario.getCF()));
@@ -36,17 +37,23 @@ public class OperatoreTampone extends JFrame {
         DataBaseController dataBaseController = new DataBaseController();
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String statement = "INSERT INTO TAMPONE VALUES (" +
+        String inserisciEsito = "INSERT INTO TAMPONE VALUES (" +
                 "'" + cfTextField.getText() + "', '" + simpleDateFormat.format(calendar.getTime()) + "', '" +
                 esiti.getSelectedItem() + "', (SELECT ID_OPE " +
                 "FROM OPERATORE_DI_TAMPONE OPE WHERE OPE.CF = '" + operatorCF + "'));";
+        String inserisciStatoSalute = "INSERT INTO STATO_SALUTE VALUES (" +
+                "'" + cfTextField.getText() + "', '" + simpleDateFormat.format(calendar.getTime()) + "', '" +
+                esiti.getSelectedItem() + "');";
         try {
-            dataBaseController.getConnection().prepareStatement(statement).executeUpdate();
+            dataBaseController.getConnection().prepareStatement(inserisciEsito).executeUpdate();
+            dataBaseController.getConnection().prepareStatement(inserisciStatoSalute).executeUpdate();
             dataBaseController = null;
         } catch (SQLException throwables) {
             JOptionPane.showMessageDialog(this,
-                    "Il codice fiscale non corrisponde a nessun cittadino",
-                    "CF errato",
+                    "Prova a controllare le seguenti condizioni:" +
+                            "\n1. Non inserire più di un tampone al giorno" +
+                            "\n2. Inserire un CF valido",
+                    "Errore",
                     JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
