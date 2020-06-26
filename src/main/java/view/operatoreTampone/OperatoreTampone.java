@@ -59,18 +59,40 @@ public class OperatoreTampone extends JFrame {
         checkGuarito();
     }
 
+    /**
+     * Controlla se ci sono stati due tamponi negativi di fila
+     */
     private void checkGuarito() {
         int tamponiNegativi = 0;
         DataBaseController dataBaseController = new DataBaseController();
-        String checkGuarito = "";
+        String checkGuarito = "SELECT tipo\n" +
+                "FROM STATO_SALUTE S\n" +
+                "WHERE CF = '" + cfTextField.getText() +"'\n" +
+                "ORDER BY S.data DESC\n" +
+                "LIMIT 2";
         try {
             ResultSet rs = dataBaseController.getConnection().prepareStatement(checkGuarito).executeQuery();
-            tamponiNegativi = Integer.parseInt(rs.getString(0));
+            while (rs.next()) {
+                if (rs.getString("tipo").equals("Negativo")) {
+                    tamponiNegativi ++;
+                }
+            }
             if (tamponiNegativi == 2) {
                 inserisciStatoSalute("Guarito");
             }
+            rs.close();
             dataBaseController = null;
+            JOptionPane.showMessageDialog(this,
+                    "Tampone inserito correttamente",
+                    "Successo",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Prova a controllare le seguenti condizioni:" +
+                            "\n1. Non inserire più di un tampone al giorno" +
+                            "\n2. Inserire un CF valido",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
@@ -86,6 +108,12 @@ public class OperatoreTampone extends JFrame {
             dataBaseController.getConnection().prepareStatement(inserisciStatoSalute).executeUpdate();
             dataBaseController = null;
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Prova a controllare le seguenti condizioni:" +
+                            "\n1. Non inserire più di un tampone al giorno" +
+                            "\n2. Inserire un CF valido",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

@@ -72,7 +72,7 @@ public class DatiPazienti extends JFrame {
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
             String statement = "SELECT * FROM STATO_SALUTE" +
-                    " WHERE CF='" + CF + "';";
+                    " WHERE CF='" + CF + "' ORDER BY data DESC, tipo;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {
@@ -96,7 +96,7 @@ public class DatiPazienti extends JFrame {
         try {
             String statement = "SELECT * " +
                     "FROM REFERTO_RICOVERO R JOIN OSPEDALE " +
-                    "WHERE CF = '" + CF + "' ORDER BY dataFine DESC;";
+                    "WHERE CF = '" + CF + "' ORDER BY dataFine DESC, tipo;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {
