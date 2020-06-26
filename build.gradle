@@ -1,6 +1,13 @@
 
 plugins {
     id 'java'
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'view.CovidManager'
+    }
 }
 
 group 'it.covidmanager'
@@ -24,4 +31,5 @@ dependencies {
     compile group: 'org.jdatepicker', name: 'jdatepicker', version: '1.3.4'
     compile group: 'com.jgoodies', name: 'jgoodies-forms', version: '1.9.0'
     compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+    compile 'com.intellij:forms_rt:7.0.3'
 }

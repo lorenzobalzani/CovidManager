@@ -65,8 +65,9 @@ public class Referti extends JFrame {
         DataBaseController dataBaseController = new DataBaseController();
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
-            String statement = "SELECT * FROM STATO_SALUTE" +
-                    " WHERE CF='" + CF + "';";
+            String statement = "SELECT * " +
+            "FROM REFERTO_RICOVERO R JOIN OSPEDALE " +
+            "WHERE CF = '" + CF + "' ORDER BY dataFine DESC;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {
@@ -75,9 +76,10 @@ public class Referti extends JFrame {
                 String dataInizio = rs.getString("dataInizio");
                 String dataFine = rs.getString("dataFine");
                 String ospedale = rs.getString("nomeOspedale");
-                String idPiano = rs.getString("idPiano");
+                String numeroPiano = rs.getString("numeroPiano");
                 String idRepartoCovid = rs.getString("idReparto");
-                tableModel.addRow(columnNames);
+                tableModel.addRow(new String[]{tipo, codiceGravita, dataInizio,
+                        dataFine, ospedale, numeroPiano, idRepartoCovid});
             }
             tabellaDati.setModel(tableModel);
             dataBaseController = null;

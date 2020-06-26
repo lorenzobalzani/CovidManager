@@ -7,10 +7,7 @@
     <rowspec value="center:33px:noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:d:grow"/>
-    <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:d:grow"/>
-    <rowspec value="top:3dlu:noGrow"/>
-    <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="fill:432px:grow"/>
     <constraints>
       <xy x="43" y="144" width="445" height="343"/>
@@ -47,17 +44,22 @@
           <text value="Seleziona il paziente in cura di cui visualizzare il referto..."/>
         </properties>
       </component>
-      <component id="33ef5" class="javax.swing.JTable" binding="tabellaDati" default-binding="true">
+      <scrollpane id="fb62b">
         <constraints>
-          <grid row="5" column="0" row-span="3" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
-        <properties>
-          <enabled value="false"/>
-        </properties>
-      </component>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="33ef5" class="javax.swing.JTable" binding="tabellaDati" default-binding="true">
+            <constraints/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>
