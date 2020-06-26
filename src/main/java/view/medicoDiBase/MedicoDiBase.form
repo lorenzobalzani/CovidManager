@@ -78,19 +78,12 @@
               <text value="Cerca"/>
             </properties>
           </component>
-          <component id="b3df5" class="javax.swing.JButton" binding="diariClinici">
+          <component id="b3df5" class="javax.swing.JButton" binding="datiPazientiButton">
             <constraints/>
             <properties>
               <font size="20"/>
               <horizontalAlignment value="0"/>
-              <text value="Visualizza diari clinici"/>
-            </properties>
-          </component>
-          <component id="e12e2" class="javax.swing.JButton" binding="refertiButton">
-            <constraints/>
-            <properties>
-              <font size="20"/>
-              <text value="Visualizza referti"/>
+              <text value="Visualizza dati pazienti"/>
             </properties>
           </component>
         </children>

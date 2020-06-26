@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.medicoDiBase.diariClinici.DiariClinici">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.medicoDiBase.DatiPazienti">
   <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
-    <rowspec value="center:42px:noGrow"/>
-    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:43px:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="center:33px:noGrow"/>
     <rowspec value="top:3dlu:noGrow"/>
@@ -10,12 +9,14 @@
     <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:d:grow"/>
     <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="center:d:grow"/>
     <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:d:grow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="fill:432px:grow"/>
     <constraints>
-      <xy x="43" y="144" width="445" height="343"/>
+      <xy x="43" y="48" width="445" height="439"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -29,30 +30,19 @@
           <font size="36"/>
           <horizontalAlignment value="10"/>
           <horizontalTextPosition value="2"/>
-          <text value="Diari clinici"/>
+          <text value="Dati pazienti"/>
         </properties>
       </component>
       <component id="a4c4b" class="javax.swing.JComboBox" binding="patients">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties/>
       </component>
-      <component id="48ca" class="javax.swing.JTextArea" binding="diario" default-binding="true">
-        <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <columns value="3"/>
-        </properties>
-      </component>
       <splitpane id="a9dc">
         <constraints>
-          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="200"/>
           </grid>
           <forms/>
@@ -80,17 +70,17 @@
       </splitpane>
       <component id="447d1" class="javax.swing.JLabel" binding="selectLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
           <font size="14"/>
-          <text value="Seleziona il paziente in cura di cui visualizzare il diario clinico..."/>
+          <text value="Seleziona il paziente in cura di cui visualizzare dati più dettagliati..."/>
         </properties>
       </component>
       <scrollpane id="43413">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
@@ -104,6 +94,41 @@
           </component>
         </children>
       </scrollpane>
+      <scrollpane id="e71fd">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-horz="false" defaultalign-vert="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="f9ca4" class="javax.swing.JTable" binding="tabellaReferti">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="3971b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="48ca" class="javax.swing.JTextArea" binding="diario" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <columns value="3"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

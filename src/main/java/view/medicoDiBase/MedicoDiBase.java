@@ -3,14 +3,10 @@ package view.medicoDiBase;
 import controller.DataBaseController;
 import model.OperatoreSanitario;
 import view.Impostazioni;
-import view.medicoDiBase.diariClinici.DiariClinici;
-import view.medicoDiBase.referti.Referti;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,17 +16,16 @@ public class MedicoDiBase extends JFrame {
     private JTable tabellaDati;
     private JScrollPane scrollPane1;
     private JTextField cercaTextField;
-    private JButton diariClinici;
+    private JButton datiPazientiButton;
     private JLabel cercaLabel;
     private JButton cercaButton;
     private JButton impostazioniButton;
-    private JButton refertiButton;
     private OperatoreSanitario medicoDiBase;
 
     public MedicoDiBase(OperatoreSanitario medicoDiBase) {
         setTitle("Gestione medico di base");
         setContentPane(mainPanel);
-        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 1.5f),
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2f),
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,10 +36,9 @@ public class MedicoDiBase extends JFrame {
                 "') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
                 "            FROM STATO_SALUTE S\n" +
                 "            WHERE S.CF = C.CF);");
-        diariClinici.addActionListener(e -> new DiariClinici(medicoDiBase));
+        datiPazientiButton.addActionListener(e -> new DatiPazienti(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
         impostazioniButton.addActionListener(e -> new Impostazioni(medicoDiBase));
-        refertiButton.addActionListener(e -> new Referti(medicoDiBase));
     }
 
     private void search(String text) {

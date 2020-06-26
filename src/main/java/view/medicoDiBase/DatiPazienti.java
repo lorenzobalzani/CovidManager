@@ -1,4 +1,4 @@
-package view.medicoDiBase.diariClinici;
+package view.medicoDiBase;
 
 import controller.DataBaseController;
 import model.Cittadino;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DiariClinici extends JFrame {
+public class DatiPazienti extends JFrame {
     private JPanel mainPanel;
     private JLabel welcomeLabel;
     private JComboBox<Cittadino> patients;
@@ -22,21 +22,24 @@ public class DiariClinici extends JFrame {
     private JButton defaultButton;
     private JLabel selectLabel;
     private JTable tabellaDati;
+    private JTable tabellaReferti;
     private final OperatoreSanitario medicoDiBase;
 
-    public DiariClinici(OperatoreSanitario medicoDiBase) {
-        setTitle("Diari clinici");
+    public DatiPazienti(OperatoreSanitario medicoDiBase) {
+        setTitle("Dati pazienti");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+                (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 1.5f));
         setVisible(true);
         this.medicoDiBase = medicoDiBase;
         queryPatient();
-        queryDiary();
         queryInfo();
+        queryReferti();
+        queryDiary();
         patients.addActionListener(e -> {
-            queryDiary();
             queryInfo();
+            queryReferti();
+            queryDiary();
         });
         defaultButton.addActionListener(e -> queryDiary());
         saveButton.addActionListener(e -> saveDiary());
@@ -78,6 +81,36 @@ public class DiariClinici extends JFrame {
                 tableModel.addRow(new String[]{tipo, data});
             }
             tabellaDati.setModel(tableModel);
+            dataBaseController = null;
+            rs.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void queryReferti() {
+        String[] columnNames = {"Tipo", "Codice gravità", "Data inizio", "Data fine",
+                "Ospedale", "Piano", "Reparto Covid"};
+        DataBaseController dataBaseController = new DataBaseController();
+        String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
+        try {
+            String statement = "SELECT * " +
+                    "FROM REFERTO_RICOVERO R JOIN OSPEDALE " +
+                    "WHERE CF = '" + CF + "' ORDER BY dataFine DESC;";
+            ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+            while (rs.next()) {
+                String tipo = rs.getString("tipo");
+                String codiceGravita = rs.getString("codiceGravita");
+                String dataInizio = rs.getString("dataInizio");
+                String dataFine = rs.getString("dataFine");
+                String ospedale = rs.getString("nomeOspedale");
+                String numeroPiano = rs.getString("numeroPiano");
+                String idRepartoCovid = rs.getString("idReparto");
+                tableModel.addRow(new String[]{tipo, codiceGravita, dataInizio,
+                        dataFine, ospedale, numeroPiano, idRepartoCovid});
+            }
+            tabellaReferti.setModel(tableModel);
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {

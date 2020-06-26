@@ -189,8 +189,12 @@ ORDER BY dataInizio, codiceGravita;
     1.Creazione tampone associato all'operatore e al cittadino designato;
     2. Aggiornamento stato salute cittadino
  */
+INSERT INTO TAMPONE VALUES ('BLZLNZ99B17H199T', '2020-03-20', 'Positivo', 1);
 
-INSERT INTO TAMPONE VALUES ()
+/**
+  Visualizzare se un cittadino ha 2 tamponi di fila negativi, quindi guarito
+ */
+
 
 
 
