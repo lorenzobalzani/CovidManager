@@ -52,6 +52,17 @@ public class Registrazione extends JFrame {
                 "'" + comune.getText() + "', " +
                 "'" + telefono.getText() + "', " +
                 "null);";
+        JOptionPane.showMessageDialog(this,
+                "Inserimento avvenuto con successo!",
+                "Cittadino creato con successo",
+                JOptionPane.INFORMATION_MESSAGE);
+        cf.setText("");
+        nome.setText("");
+        cognome.setText("");
+        dataDiNascita.setText("");
+        genere.setText("");
+        comune.setText("");
+        telefono.setText("");
         try {
             dataBaseController.getConnection().prepareStatement(creaCittadino).executeUpdate();
             dataBaseController = null;
@@ -78,6 +89,13 @@ public class Registrazione extends JFrame {
             dataBaseController.getConnection().prepareStatement(creaCittadino).executeUpdate();
             dataBaseController.getConnection().prepareStatement(aggiungiTipo).executeUpdate();
             dataBaseController = null;
+            JOptionPane.showMessageDialog(this,
+                    "Inserimento avvenuto con successo!",
+                    "Credenziali create con successo",
+                    JOptionPane.INFORMATION_MESSAGE);
+            cfCredenziali.setText("");
+            username.setText("");
+            passwordField.setText("");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             JOptionPane.showMessageDialog(this,
