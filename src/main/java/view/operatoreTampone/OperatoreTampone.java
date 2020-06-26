@@ -1,7 +1,5 @@
 package view.operatoreTampone;
 
-import model.Esiti;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,5 +16,8 @@ public class OperatoreTampone extends JFrame {
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
         setVisible(true);
+        inserisciButton.addActionListener(e -> {
+
+        });
     }
 }

@@ -8,6 +8,8 @@ import view.operatoreTampone.OperatoreTampone;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Optional;
 
 public class CovidManager extends JFrame {
@@ -18,6 +20,7 @@ public class CovidManager extends JFrame {
     private JTextField usernameField;
     private JLabel passwordLabel;
     private JLabel usernameLabel;
+    private JButton registrazioneButton;
 
     public CovidManager() {
         setTitle("Login CovidManager");
@@ -52,6 +55,7 @@ public class CovidManager extends JFrame {
                         JOptionPane.WARNING_MESSAGE);
             }
         });
+        registrazioneButton.addActionListener(e -> new Registrazione());
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,7 @@ public class Impostazioni extends JFrame {
     private JTextField newUsernameTextField;
     private JPasswordField oldPasswordTextField;
     private JPasswordField newPasswordTextField;
-    private OperatoreSanitario operatoreSanitario;
+    private final OperatoreSanitario operatoreSanitario;
 
     public Impostazioni(OperatoreSanitario operatoreSanitario) throws HeadlessException {
         setTitle("Impostazioni");
