@@ -22,7 +22,7 @@
         </constraints>
         <properties>
           <font size="36"/>
-          <text value="Benvenuto operatore di tampone"/>
+          <text value="Operatore di tampone"/>
         </properties>
       </component>
       <component id="a514d" class="javax.swing.JLabel">

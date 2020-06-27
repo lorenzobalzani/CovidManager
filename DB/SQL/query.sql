@@ -192,9 +192,10 @@ ORDER BY dataInizio, codiceGravita;
 INSERT INTO TAMPONE VALUES ('BLZLNZ99B17H199T', '2020-03-20', 'Positivo', 1);
 
 /**
-  Visualizzare se un cittadino ha 2 tamponi di fila negativi, quindi guarito
+  Selezione tutti i distinti comuni dei cittadini
  */
-
+SELECT DISTINCT comuneResidenza
+FROM CITTADINO;
 
 
 

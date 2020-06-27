@@ -33,9 +33,9 @@ public class MedicoDiBase extends JFrame {
         queryPatients("SELECT DISTINCT * FROM CITTADINO C, STATO_SALUTE S" +
                 " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M WHERE M.CF = '" +
                 medicoDiBase.getCF() +
-                "') AND S.CF = C.CF AND S.data = (SELECT data\n" +
+                "') AND S.CF = C.CF AND S.data = (SELECT max(data)\n" +
                 "            FROM STATO_SALUTE S\n" +
-                "            WHERE S.CF = C.CF) ");
+                "            WHERE S.CF = C.CF)");
         datiPazientiButton.addActionListener(e -> new DatiPazienti(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
         impostazioniButton.addActionListener(e -> new Impostazioni(medicoDiBase));
