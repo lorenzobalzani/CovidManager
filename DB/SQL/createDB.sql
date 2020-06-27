@@ -109,8 +109,7 @@ create table REFERTO_RICOVERO (
      CF varchar(17) not null,
      tipo varchar(20) not null,
      codiceGravita int not null,
-     dataInizio date not null,
-     dataFine date,
+     data date not null,
      idOspedale int not null,
      numeroPiano int not null,
      idReparto int not null,
@@ -280,7 +279,7 @@ create unique index SID_REFER_CITTA_IND
      on REFERTO_DECESSO (CF);
 
 create unique index ID_REFERTO_RICOVERO_IND
-     on REFERTO_RICOVERO (CF, tipo, dataInizio);
+     on REFERTO_RICOVERO (CF, tipo, data);
 
 create index REF_REFER_REPAR_IND
      on REFERTO_RICOVERO (idOspedale, numeroPiano, idReparto);

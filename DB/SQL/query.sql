@@ -150,7 +150,7 @@ VALUES ('RSSMROZ58B18A199T', 'Terapia intensiva', '1', '2020-05-25', '2020-06-05
 /**
   Visualizzazione referto per paziente
  */
-SELECT CF, tipo, codiceGravita, dataInizio, dataFine, nomeOspedale, numeroPiano, idReparto
+SELECT CF, tipo, codiceGravita, data, dataFine, nomeOspedale, numeroPiano, idReparto
 FROM REFERTO_RICOVERO R
 JOIN OSPEDALE
 WHERE CF = 'RSSLNZ99C17A199T'
@@ -159,7 +159,7 @@ ORDER BY dataFine;
 /**
   Visualizzazione dei referti di tutti i reparti Covid di un dato ospedale
  */
-SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, idReparto, numeroPiano, codiceGravita, dataInizio, dataFine
+SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, idReparto, numeroPiano, codiceGravita, data, dataFine
 FROM REFERTO_RICOVERO R, CITTADINO C
 WHERE idReparto IN (SELECT idReparto
                     FROM REPARTO_COVID
@@ -171,18 +171,18 @@ WHERE idReparto IN (SELECT idReparto
                     )
 )
 AND C.CF = R.CF
-ORDER BY dataInizio, codiceGravita;
+ORDER BY data, codiceGravita;
 
 /**
   Visualizzazione dei referti di un dato reparto Covid di un dato ospedale
  */
-SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, codiceGravita, dataInizio, dataFine
+SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, codiceGravita, data, dataFine
 FROM REFERTO_RICOVERO R, CITTADINO C
 WHERE idReparto = '0' AND numeroPiano = '1' AND idOspedale = (SELECT idOspedale
                                                               FROM OSPEDALE
                                                               WHERE nomeOspedale = 'Santa Maria delle Croci')
 AND C.CF = R.CF
-ORDER BY dataInizio, codiceGravita;
+ORDER BY data, codiceGravita;
 
 /**
   Inserimento nuovo tampone:

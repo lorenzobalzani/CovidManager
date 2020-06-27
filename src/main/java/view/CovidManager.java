@@ -50,7 +50,6 @@ public class CovidManager extends JFrame {
                         new OperatoreTampone(operatoreSanitario.get());
                         break;
                 }
-                dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
                         "Prego ricontrollare le credenziali!",

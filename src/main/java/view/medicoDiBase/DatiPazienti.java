@@ -89,26 +89,24 @@ public class DatiPazienti extends JFrame {
     }
 
     private void queryReferti() {
-        String[] columnNames = {"Tipo", "Codice gravità", "Data inizio", "Data fine",
+        String[] columnNames = {"Tipo", "Codice gravità", "Data",
                 "Ospedale", "Piano", "Reparto Covid"};
         DataBaseController dataBaseController = new DataBaseController();
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
             String statement = "SELECT * " +
                     "FROM REFERTO_RICOVERO R JOIN OSPEDALE " +
-                    "WHERE CF = '" + CF + "' ORDER BY dataFine DESC, tipo;";
+                    "WHERE CF = '" + CF + "' ORDER BY data DESC, tipo;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {
                 String tipo = rs.getString("tipo");
                 String codiceGravita = rs.getString("codiceGravita");
-                String dataInizio = rs.getString("dataInizio");
-                String dataFine = rs.getString("dataFine");
+                String data = rs.getString("data");
                 String ospedale = rs.getString("nomeOspedale");
                 String numeroPiano = rs.getString("numeroPiano");
                 String idRepartoCovid = rs.getString("idReparto");
-                tableModel.addRow(new String[]{tipo, codiceGravita, dataInizio,
-                        dataFine, ospedale, numeroPiano, idRepartoCovid});
+                tableModel.addRow(new String[]{tipo, codiceGravita, data, ospedale, numeroPiano, idRepartoCovid});
             }
             tabellaReferti.setModel(tableModel);
             dataBaseController = null;
