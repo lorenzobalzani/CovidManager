@@ -58,7 +58,7 @@ AND S.CF = C.CF AND S.data = (SELECT MAX(data)s
   Reperimento referti per i propri pazienti
  */
 SELECT *
-FROM REFERTO_RICOVERO R
+FROM REFERTO R
 WHERE CF = 'RSSLNZ99C17A199T';
 
 /**
@@ -113,7 +113,7 @@ VALUES ((SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle C
 /**
   Inserimento referto
  */
-INSERT INTO REFERTO_RICOVERO
+INSERT INTO REFERTO
 VALUES ('RSSLNZ99C17A199T', 'Inizio ricovero', '2', '2020-06-30',
         (SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle Croci'),
         3, 0);
@@ -122,7 +122,7 @@ VALUES ('RSSLNZ99C17A199T', 'Inizio ricovero', '2', '2020-06-30',
   Visualizzazione referto per paziente
  */
 SELECT CF, tipo, codiceGravita, data, nomeOspedale, numeroPiano, idReparto
-FROM REFERTO_RICOVERO R
+FROM REFERTO R
 JOIN OSPEDALE
 WHERE CF = 'RSSLNZ99C17A199T'
 ORDER BY data;
@@ -131,7 +131,7 @@ ORDER BY data;
   Visualizzazione dei referti di tutti i reparti Covid di un dato ospedale
  */
 SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, idReparto, numeroPiano, codiceGravita, data, dataFine
-FROM REFERTO_RICOVERO R, CITTADINO C
+FROM REFERTO R, CITTADINO C
 WHERE idReparto IN (SELECT idReparto
                     FROM REPARTO_COVID
                     WHERE numeroPiano IN (SELECT numeroPiano
@@ -148,7 +148,7 @@ ORDER BY data, codiceGravita;
   Visualizzazione dei referti di un dato reparto Covid di un dato ospedale
  */
 SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, codiceGravita, data
-FROM REFERTO_RICOVERO R, CITTADINO C
+FROM REFERTO R, CITTADINO C
 WHERE idReparto = '0' AND numeroPiano = '1' AND idOspedale = (SELECT idOspedale
                                                               FROM OSPEDALE
                                                               WHERE nomeOspedale = 'Santa Maria delle Croci')
@@ -167,6 +167,36 @@ INSERT INTO TAMPONE VALUES ('BLZLNZ99B17H199T', '2020-03-20', 'Positivo', 1);
  */
 SELECT DISTINCT comuneResidenza
 FROM CITTADINO;
+
+/**
+  Ultimo esito tampone per ogni persona
+ */
+SELECT CF, esito, data
+FROM TAMPONE T
+WHERE T.data = (SELECT MAX(T1.data)
+                FROM TAMPONE T1
+                WHERE T1.CF = T.CF);
+
+/**
+  Numero tamponi positivi e negativi
+ */
+SELECT esito, COUNT(esito) AS ContaEsito
+FROM TAMPONE T
+WHERE T.data = (SELECT MAX(T1.data)
+                FROM TAMPONE T1
+                WHERE T1.CF = T.CF)
+GROUP BY esito;
+
+/**
+  Numero decessi
+ */
+SELECT tipo, COUNT(tipo) AS ContaEsito
+FROM REFERTO R
+WHERE R.data = (SELECT MAX(R1.data)
+                FROM REFERTO R1
+                WHERE R1.CF = R.CF)
+GROUP BY tipo;
+
 
 
 

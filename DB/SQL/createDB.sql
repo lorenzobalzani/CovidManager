@@ -180,11 +180,11 @@ alter table REFERTO_DECESSO add constraint SID_REFER_CITTA_FK
      foreign key (CF)
      references CITTADINO(CF);
 
-alter table REFERTO_RICOVERO add constraint REF_REFER_CITTA
+alter table REFERTO add constraint REF_REFER_CITTA
      foreign key (CF)
      references CITTADINO(CF);
 
-alter table REFERTO_RICOVERO add constraint REF_REFER_REPAR_FK
+alter table REFERTO add constraint REF_REFER_REPAR_FK
      foreign key (idOspedale, numeroPiano, idReparto)
      references REPARTO_COVID(idOspedale, numeroPiano, idReparto);
 
@@ -269,10 +269,10 @@ create unique index SID_REFER_CITTA_IND
      on REFERTO_DECESSO (CF);
 
 create unique index ID_REFERTO_RICOVERO_IND
-     on REFERTO_RICOVERO (CF, tipo, data);
+     on REFERTO (CF, tipo, data);
 
 create index REF_REFER_REPAR_IND
-     on REFERTO_RICOVERO (idOspedale, numeroPiano, idReparto);
+     on REFERTO (idOspedale, numeroPiano, idReparto);
 
 create unique index ID_REPARTO_COVID_IND
      on REPARTO_COVID (idOspedale, numeroPiano, idReparto);

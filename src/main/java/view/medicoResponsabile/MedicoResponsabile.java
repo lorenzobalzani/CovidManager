@@ -1,13 +1,10 @@
 package view.medicoResponsabile;
 
 import controller.DataBaseController;
-import model.Cittadino;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -46,31 +43,18 @@ public class MedicoResponsabile extends JFrame {
         tipo.addItem("Decesso");
         ospedale.addItem("Seleziona ospedale...");
         queryOspedale();
-        inserisciButton.addActionListener(e -> {
-            if (String.valueOf(tipo.getSelectedItem()).equals("Decesso")) {
-                inserisciDecesso();
-            } else {
-                inserisciRicovero();
-            }
-        });
+        inserisciButton.addActionListener(e -> inserisciReferto("INSERT INTO REFERTO VALUES ('" +
+                        cfTextField.getText() + "', '" + tipo.getSelectedItem() + "', '" +
+                        codiceGravita.getValue() + "', '" + data.getText() + "', (SELECT" +
+                        " idOspedale FROM OSPEDALE WHERE nomeOspedale = '" +
+                        ospedale.getSelectedItem() + "'), " + piano.getText() + ", " +
+                        reparto.getText() + ");"));
     }
 
-    private void inserisciDecesso() {
-    }
-
-    private void inserisciRicovero() {
+    private void inserisciReferto(String statement) {
         DataBaseController dataBaseController = new DataBaseController();
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String inserisciRicovero = "INSERT INTO REFERTO_RICOVERO VALUES ('" +
-                cfTextField.getText() + "', '" + tipo.getSelectedItem() + "', '" +
-                codiceGravita.getValue() + "', '" + simpleDateFormat.format(calendar.getTime()) + "', (SELECT" +
-                " idOspedale FROM OSPEDALE WHERE nomeOspedale = '" +
-                ospedale.getSelectedItem() + "'), " + piano.getText() + ", " +
-                reparto.getText() + ");";
-        System.out.println(inserisciRicovero);
         try {
-            dataBaseController.getConnection().prepareStatement(inserisciRicovero).executeUpdate();
+            dataBaseController.getConnection().prepareStatement(statement).executeUpdate();
             dataBaseController = null;
             JOptionPane.showMessageDialog(this,
                     "Referto inserito con successo!",

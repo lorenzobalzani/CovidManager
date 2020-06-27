@@ -99,7 +99,7 @@ public class DatiPazienti extends JFrame {
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
             String statement = "SELECT * " +
-                    "FROM REFERTO_RICOVERO R JOIN OSPEDALE " +
+                    "FROM REFERTO R JOIN OSPEDALE " +
                     "WHERE CF = '" + CF + "' ORDER BY data DESC, tipo;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);

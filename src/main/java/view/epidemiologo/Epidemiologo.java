@@ -40,11 +40,15 @@ public class Epidemiologo extends JFrame {
         etaMassima.setModel(
                 new SpinnerNumberModel(130, 0, 130, 1));
         queryCities();
+        queryDati();
         resetButton.addActionListener(e -> {
             genereComboBox.setSelectedItem("All");
             comuneComboBox.setSelectedItem("All");
             etaMinima.setValue(0);
             etaMassima.setValue(130);
+        });
+        queryButton.addActionListener(e -> {
+            queryDati();
         });
     }
 
@@ -63,23 +67,35 @@ public class Epidemiologo extends JFrame {
         }
     }
 
-    private void queryDati(String statement) {
-        String[] columnNames = {"Positivi", "Guariti", "Ricoverati", "Decessi"};
+    private void queryDati() {
+        String[] columnNames = {"Positivi", "Negativi", "Decessi"};
         DataBaseController dataBaseController = new DataBaseController();
+        String tamponi = "SELECT esito, COUNT(esito) AS ContaEsito " +
+                "FROM TAMPONE T WHERE T.data = (SELECT MAX(T1.data) " +
+                "FROM TAMPONE T1 " +
+                "WHERE T1.CF = T.CF) " +
+                "GROUP BY esito";
+        String referti = "SELECT tipo, COUNT(tipo) AS ContaEsito " +
+                "FROM REFERTO R WHERE R.data = (SELECT MAX(R1.data) " +
+                "FROM REFERTO R1 " +
+                "WHERE R1.CF = R.CF) " +
+                "GROUP BY tipo";
         try {
-            ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
+            ResultSet rsTamponi = dataBaseController.getConnection().prepareStatement(tamponi).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-            while (rs.next()) {
-                String positivi = rs.getString("positivi");
-                String guariti = rs.getString("guariti");
-                String ricoverati = rs.getString("ricoverati");
-                String decessi = rs.getString("decessi");
-                tableModel.addRow(new String[]{positivi, guariti, ricoverati,
-                        decessi});
-            }
+            rsTamponi.next();
+            String negativi = rsTamponi.getString("ContaEsito");
+            rsTamponi.next();
+            String positivi = rsTamponi.getString("ContaEsito");
+
+            ResultSet rsReferti = dataBaseController.getConnection().prepareStatement(referti).executeQuery();
+            rsReferti.next();
+            String decessi = rsReferti.getString("ContaEsito");
+
+            tableModel.addRow(new String[]{positivi, negativi, decessi});
             tabellaDati.setModel(tableModel);
             dataBaseController = null;
-            rs.close();
+            rsTamponi.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

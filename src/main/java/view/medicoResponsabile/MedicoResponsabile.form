@@ -123,6 +123,7 @@
             </constraints>
             <properties>
               <font size="20"/>
+              <toolTipText value="Formato: yyyy-mm-dd"/>
             </properties>
           </component>
         </children>
@@ -215,6 +216,7 @@
                 </constraints>
                 <properties>
                   <font size="20"/>
+                  <toolTipText value="Inserire ID del piano"/>
                 </properties>
               </component>
               <component id="36334" class="javax.swing.JTextField" binding="reparto">
@@ -226,6 +228,7 @@
                 </constraints>
                 <properties>
                   <font size="20"/>
+                  <toolTipText value="Inserire ID del reparto"/>
                 </properties>
               </component>
             </children>
