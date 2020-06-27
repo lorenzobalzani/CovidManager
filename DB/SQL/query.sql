@@ -11,24 +11,6 @@ INSERT INTO CITTADINO (CF, nome, cognome, dataDiNascita, genere, comuneResidenza
 VALUES ('RSSLNZ99C17A199T', 'Lorenzo', 'Rossi', '1999-03-17', 'Maschio', 'Ravenna',
         '3883629479');
 
-INSERT STATO_SALUTE
-VALUES ('BLZLNZ99B17H199T', '2020-03-20', 'Positivo');
-
-INSERT STATO_SALUTE
-VALUES ('BLZLNZ99B17H199T', '2020-05-13', 'Guarito');
-
-INSERT STATO_SALUTE
-VALUES ('RSSLNZ99C17A199T', '2020-05-11', 'Positivo');
-
-INSERT STATO_SALUTE
-VALUES ('RSSLNZ99C17A199T', '2020-06-20', 'Guarito');
-
-INSERT STATO_SALUTE
-VALUES ('RSSLNZ99C17A199T', '2020-06-30', 'Ricoverato');
-
-INSERT STATO_SALUTE
-VALUES ('RSSLNZ99C17A199T', '2020-07-02', 'Guarito');
-
 /**
   Inserimento medico di base, sue credenziali e assegnamento di un paziente
  */
@@ -51,16 +33,15 @@ UPDATE CITTADINO SET ID_MED=(SELECT ID_MED
                              WHERE M.CF='RSSMROZ58B18A199T') WHERE CF='RSSLNZ99C17A199T';
 
 /**
-  Pazienti del medico di base Mario Rossi con il loro ultimo stato di salute
+  Pazienti del medico di base Mario Rossi con il loro ultimo tampone
  */
-SELECT C.CF, C.cognome, S.tipo, S.data
-FROM CITTADINO C , STATO_SALUTE S
+SELECT C.CF, C.cognome, T.esito, T.data
+FROM CITTADINO C , TAMPONE T
 WHERE ID_MED = (SELECT ID_MED
                 FROM MEDICO_DI_BASE M
                 WHERE M.CF='RSSMROZ58B18A199T')
-  AND S.CF = C.CF AND S.data = (SELECT MAX(S.data)
-                                FROM STATO_SALUTE S
-                                WHERE S.CF = C.CF);
+  AND T.CF = C.CF AND T.data = (SELECT MAX(T.data)
+                                WHERE T.CF = C.CF);
 
 /**
   Search statement
@@ -133,28 +114,18 @@ VALUES ((SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle C
   Inserimento referto
  */
 INSERT INTO REFERTO_RICOVERO
-VALUES ('RSSLNZ99C17A199T', 'Ricovero', '2', '2020-06-30', '2020-07-02',
+VALUES ('RSSLNZ99C17A199T', 'Inizio ricovero', '2', '2020-06-30',
         (SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle Croci'),
         3, 0);
-
-INSERT INTO REFERTO_RICOVERO
-VALUES ('RSSMROZ58B18A199T', 'Ricovero', '3', '2020-05-20', '2020-06-10',
-        (SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle Croci'),
-        3, 0);
-
-INSERT INTO REFERTO_RICOVERO
-VALUES ('RSSMROZ58B18A199T', 'Terapia intensiva', '1', '2020-05-25', '2020-06-05',
-        (SELECT idOspedale FROM OSPEDALE WHERE nomeOspedale='Santa Maria delle Croci'),
-        1, 0);
 
 /**
   Visualizzazione referto per paziente
  */
-SELECT CF, tipo, codiceGravita, data, dataFine, nomeOspedale, numeroPiano, idReparto
+SELECT CF, tipo, codiceGravita, data, nomeOspedale, numeroPiano, idReparto
 FROM REFERTO_RICOVERO R
 JOIN OSPEDALE
 WHERE CF = 'RSSLNZ99C17A199T'
-ORDER BY dataFine;
+ORDER BY data;
 
 /**
   Visualizzazione dei referti di tutti i reparti Covid di un dato ospedale
@@ -176,7 +147,7 @@ ORDER BY data, codiceGravita;
 /**
   Visualizzazione dei referti di un dato reparto Covid di un dato ospedale
  */
-SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, codiceGravita, data, dataFine
+SELECT C.CF, C.nome, C.cognome, C.dataDiNascita, tipo, codiceGravita, data
 FROM REFERTO_RICOVERO R, CITTADINO C
 WHERE idReparto = '0' AND numeroPiano = '1' AND idOspedale = (SELECT idOspedale
                                                               FROM OSPEDALE
