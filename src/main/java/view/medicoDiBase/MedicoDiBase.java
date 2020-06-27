@@ -14,7 +14,7 @@ public class MedicoDiBase extends JFrame {
     private JPanel mainPanel;
     private JLabel riepilogoDatiLabel;
     private JTable tabellaDati;
-    private JScrollPane scrollPane1;
+    private JScrollPane pazienti;
     private JTextField cercaTextField;
     private JButton datiPazientiButton;
     private JLabel cercaLabel;
@@ -29,30 +29,26 @@ public class MedicoDiBase extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pazienti.setBorder(BorderFactory.createTitledBorder("Pazienti in cura"));
         this.medicoDiBase = medicoDiBase;
-        queryPatients("SELECT DISTINCT * FROM CITTADINO C, STATO_SALUTE S" +
+        queryPatients("SELECT * FROM CITTADINO C" +
                 " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M WHERE M.CF = '" +
                 medicoDiBase.getCF() +
-                "') AND S.CF = C.CF AND S.data = (SELECT max(data)\n" +
-                "            FROM STATO_SALUTE S\n" +
-                "            WHERE S.CF = C.CF)");
+                "')");
         datiPazientiButton.addActionListener(e -> new DatiPazienti(medicoDiBase));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
         impostazioniButton.addActionListener(e -> new Impostazioni(medicoDiBase));
     }
 
     private void search(String text) {
-        queryPatients("SELECT DISTINCT * FROM CITTADINO C, STATO_SALUTE S" +
+        queryPatients("SELECT * FROM CITTADINO C" +
                         " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M" +
                 " WHERE M.CF = '" + medicoDiBase.getCF() + "') AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
-                text + "%' OR tipo LIKE '%" + text + "%' OR data LIKE '%" + text + "%' OR C.CF LIKE '%" +
-                text + "%') AND S.CF = C.CF AND S.data = (SELECT MAX(data)\n" +
-                " FROM STATO_SALUTE S\n" +
-                " WHERE S.CF = C.CF);");
+                text + "%' OR telefono LIKE '%" + text + "' OR comuneResidenza LIKE '%" + text +"')");
     }
 
     private void queryPatients(String statement) {
-        String[] columnNames = {"CF", "Nome", "Cognome", "Stato salute", "Data"};
+        String[] columnNames = {"CF", "Nome", "Cognome", "Comune", "Telefono"};
         DataBaseController dataBaseController = new DataBaseController();
         try {
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
@@ -61,10 +57,9 @@ public class MedicoDiBase extends JFrame {
                 String CF = rs.getString("C.CF");
                 String nome = rs.getString("C.nome");
                 String cognome = rs.getString("C.cognome");
-                String statoSalute = rs.getString("S.tipo");
-                String dataStatoSalute = rs.getString("S.data");
-                tableModel.addRow(new String[]{CF, nome, cognome, statoSalute,
-                        dataStatoSalute});
+                String comuneResidenza = rs.getString("C.comuneResidenza");
+                String telefono = rs.getString("C.telefono");
+                tableModel.addRow(new String[]{CF, nome, cognome, comuneResidenza, telefono});
             }
             tabellaDati.setModel(tableModel);
             dataBaseController = null;

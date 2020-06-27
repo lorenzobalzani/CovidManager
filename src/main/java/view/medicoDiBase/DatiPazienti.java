@@ -23,6 +23,8 @@ public class DatiPazienti extends JFrame {
     private JLabel selectLabel;
     private JTable tabellaDati;
     private JTable tabellaReferti;
+    private JScrollPane refertiPanel;
+    private JScrollPane statiSalutePanel;
     private final OperatoreSanitario medicoDiBase;
 
     public DatiPazienti(OperatoreSanitario medicoDiBase) {
@@ -36,6 +38,8 @@ public class DatiPazienti extends JFrame {
         queryInfo();
         queryReferti();
         queryDiary();
+        statiSalutePanel.setBorder(BorderFactory.createTitledBorder("Tamponi"));
+        refertiPanel.setBorder(BorderFactory.createTitledBorder("Ricoveri"));
         patients.addActionListener(e -> {
             queryInfo();
             queryReferti();
@@ -67,16 +71,16 @@ public class DatiPazienti extends JFrame {
     }
 
     private void queryInfo() {
-        String[] columnNames = {"Stato salute", "Data"};
+        String[] columnNames = {"Esito", "Data"};
         DataBaseController dataBaseController = new DataBaseController();
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
-            String statement = "SELECT * FROM STATO_SALUTE" +
-                    " WHERE CF='" + CF + "' ORDER BY data DESC, tipo;";
+            String statement = "SELECT * FROM TAMPONE" +
+                    " WHERE CF='" + CF + "' ORDER BY data DESC;";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {
-                String tipo = rs.getString("tipo");
+                String tipo = rs.getString("esito");
                 String data = rs.getString("data");
                 tableModel.addRow(new String[]{tipo, data});
             }
@@ -89,7 +93,7 @@ public class DatiPazienti extends JFrame {
     }
 
     private void queryReferti() {
-        String[] columnNames = {"Tipo", "Codice gravità", "Data",
+        String[] columnNames = {"Tipo ricovero", "Codice gravità", "Data",
                 "Ospedale", "Piano", "Reparto Covid"};
         DataBaseController dataBaseController = new DataBaseController();
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
@@ -132,7 +136,6 @@ public class DatiPazienti extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     private void saveDiary() {

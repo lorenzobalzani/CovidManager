@@ -78,7 +78,7 @@
           <text value="Seleziona il paziente in cura di cui visualizzare dati più dettagliati..."/>
         </properties>
       </component>
-      <scrollpane id="43413">
+      <scrollpane id="43413" binding="statiSalutePanel">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
@@ -94,17 +94,21 @@
           </component>
         </children>
       </scrollpane>
-      <scrollpane id="e71fd">
+      <scrollpane id="e71fd" binding="refertiPanel">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="f9ca4" class="javax.swing.JTable" binding="tabellaReferti">
             <constraints/>
-            <properties/>
+            <properties>
+              <enabled value="false"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

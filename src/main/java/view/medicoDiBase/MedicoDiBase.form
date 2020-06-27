@@ -28,7 +28,7 @@
           <text value="Medico di base - riepilogo dati"/>
         </properties>
       </component>
-      <scrollpane id="73bbb" binding="scrollPane1">
+      <scrollpane id="73bbb" binding="pazienti">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>

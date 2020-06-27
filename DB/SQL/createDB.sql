@@ -125,12 +125,6 @@ create table REPARTO_COVID (
      constraint ID_REPARTO_COVID_ID primary key (idOspedale, numeroPiano, idReparto),
      constraint SID_REPAR_MEDIC_ID unique (ID_RESP));
 
-create table STATO_SALUTE (
-     CF varchar(17) not null,
-     data date not null,
-     tipo varchar(20) not null,
-     constraint ID_STATO_SALUTE_ID primary key (CF, data, tipo));
-
 create table TAMPONE (
      CF varchar(17) not null,
      data date not null,
@@ -201,10 +195,6 @@ alter table REPARTO_COVID add constraint REF_REPAR_PIANO
 alter table REPARTO_COVID add constraint SID_REPAR_MEDIC_FK
      foreign key (ID_RESP)
      references MEDICO_RESPONSABILE(ID_RESP);
-
-alter table STATO_SALUTE add constraint REF_STATO_CITTA
-     foreign key (CF)
-     references CITTADINO(CF);
 
 alter table TAMPONE add constraint REF_TAMPO_CITTA
      foreign key (CF)
@@ -289,9 +279,6 @@ create unique index ID_REPARTO_COVID_IND
 
 create unique index SID_REPAR_MEDIC_IND
      on REPARTO_COVID (ID_RESP);
-
-create unique index ID_STATO_SALUTE_IND
-     on STATO_SALUTE (CF, data, tipo);
 
 create unique index ID_TAMPONE_IND
      on TAMPONE (CF, data);
