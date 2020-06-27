@@ -43,6 +43,10 @@ public class OperatoreTampone extends JFrame {
         try {
             dataBaseController.getConnection().prepareStatement(inserisciEsito).executeUpdate();
             dataBaseController = null;
+            JOptionPane.showMessageDialog(this,
+                    "Tampone eseguito con successo",
+                    "Successo",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException throwables) {
             JOptionPane.showMessageDialog(this,
                     "Prova a controllare le seguenti condizioni:" +
