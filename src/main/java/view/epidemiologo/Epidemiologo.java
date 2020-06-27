@@ -22,6 +22,8 @@ public class Epidemiologo extends JFrame {
     private JButton queryButton;
     private JButton resetButton;
 
+    private String filter="";
+
     public Epidemiologo()  {
         setTitle("Gestione Epidemiologo");
         setContentPane(mainPanel);
@@ -48,6 +50,7 @@ public class Epidemiologo extends JFrame {
             etaMassima.setValue(130);
         });
         queryButton.addActionListener(e -> {
+            updateFilter();
             queryDati();
         });
     }
@@ -70,25 +73,25 @@ public class Epidemiologo extends JFrame {
     private void queryDati() {
         String[] columnNames = {"Positivi", "Negativi", "Decessi"};
         DataBaseController dataBaseController = new DataBaseController();
-        String tamponi = "SELECT esito, COUNT(esito) AS ContaEsito " +
+        String tamponiQuery = "SELECT esito, COUNT(esito) AS ContaEsito " +
                 "FROM TAMPONE T WHERE T.data = (SELECT MAX(T1.data) " +
                 "FROM TAMPONE T1 " +
-                "WHERE T1.CF = T.CF) " +
-                "GROUP BY esito";
-        String referti = "SELECT tipo, COUNT(tipo) AS ContaEsito " +
+                "WHERE T1.CF = T.CF) " + filter +
+                " GROUP BY esito";
+        String decessiQuery = "SELECT tipo, COUNT(tipo) AS ContaEsito " +
                 "FROM REFERTO R WHERE R.data = (SELECT MAX(R1.data) " +
                 "FROM REFERTO R1 " +
-                "WHERE R1.CF = R.CF) " +
-                "GROUP BY tipo";
+                "WHERE R1.CF = R.CF) " + filter +
+                " GROUP BY tipo";
         try {
-            ResultSet rsTamponi = dataBaseController.getConnection().prepareStatement(tamponi).executeQuery();
+            ResultSet rsTamponi = dataBaseController.getConnection().prepareStatement(tamponiQuery).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             rsTamponi.next();
             String negativi = rsTamponi.getString("ContaEsito");
             rsTamponi.next();
             String positivi = rsTamponi.getString("ContaEsito");
 
-            ResultSet rsReferti = dataBaseController.getConnection().prepareStatement(referti).executeQuery();
+            ResultSet rsReferti = dataBaseController.getConnection().prepareStatement(decessiQuery).executeQuery();
             rsReferti.next();
             String decessi = rsReferti.getString("ContaEsito");
 
@@ -99,5 +102,14 @@ public class Epidemiologo extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    private void updateFilter() {
+        String genere = String.valueOf(genereComboBox.getSelectedItem());
+        String comune = String.valueOf(comuneComboBox.getSelectedItem());
+        genere = (genere.equals("All")) ? "" : genere;
+        comune = (comune.equals("All")) ? "" : comune;
+        String etaMin = String.valueOf(etaMinima.getValue());
+        String etaMax = String.valueOf(etaMassima.getValue());
     }
 }
