@@ -4,6 +4,7 @@ import controller.LoginController;
 import model.OperatoreSanitario;
 import view.epidemiologo.Epidemiologo;
 import view.medicoDiBase.MedicoDiBase;
+import view.medicoResponsabile.MedicoResponsabile;
 import view.operatoreTampone.OperatoreTampone;
 
 import javax.swing.*;
@@ -36,12 +37,14 @@ public class CovidManager extends JFrame {
             if (operatoreSanitario.isPresent()) {
                 switch (operatoreSanitario.get().getTipo()) {
                     case EPIDEMIOLOGO:
+                        //TODO classe epidemiologo
                         new Epidemiologo();
                         break;
                     case MEDICO_DI_BASE:
                         new MedicoDiBase(operatoreSanitario.get());
                         break;
                     case MEDICO_RESPONSABILE:
+                        new MedicoResponsabile(operatoreSanitario.get());
                         break;
                     case OPERATORE_DI_TAMPONE:
                         new OperatoreTampone(operatoreSanitario.get());
