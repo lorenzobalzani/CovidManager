@@ -197,6 +197,16 @@ WHERE R.data = (SELECT MAX(R1.data)
                 WHERE R1.CF = R.CF)
 GROUP BY tipo;
 
+/**
+  Tamponi in base alla data e genere
+ */
+SELECT DISTINCT esito, COUNT(esito) AS ContaEsito
+FROM TAMPONE T, CITTADINO C
+WHERE T.data = (SELECT MAX(T1.data) FROM TAMPONE T1 WHERE T1.CF = T.CF AND C.CF = T1.CF )
+  AND dataDiNascita >= '1990-02-01' AND dataDiNascita <= '2020-01-01' AND genere = 'Femmina'
+GROUP BY esito
+
+
 
 
 
