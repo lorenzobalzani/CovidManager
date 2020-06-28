@@ -113,6 +113,7 @@
                       </grid>
                     </constraints>
                     <properties>
+                      <text value="1900-01-01"/>
                       <toolTipText value="Formato: yyyy-mm-dd"/>
                     </properties>
                   </component>

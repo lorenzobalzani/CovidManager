@@ -25,7 +25,7 @@ public class MedicoResponsabile extends JFrame {
     private JTextField piano;
     private JTextField reparto;
 
-    public MedicoResponsabile(OperatoreSanitario operatoreSanitario) {
+    public MedicoResponsabile() {
         setTitle("Medico responsabile");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,

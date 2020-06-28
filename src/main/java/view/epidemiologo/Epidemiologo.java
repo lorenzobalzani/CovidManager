@@ -7,6 +7,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.List;
 
 public class Epidemiologo extends JFrame {
     private JPanel mainPanel;
@@ -19,8 +22,10 @@ public class Epidemiologo extends JFrame {
     private JButton resetButton;
     private JTextField dataMin;
     private JTextField dataMax;
-
     private String filter="";
+    private Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
+    private List<String> cities = new ArrayList<>();
 
     public Epidemiologo()  {
         setTitle("Gestione Epidemiologo");
@@ -31,6 +36,9 @@ public class Epidemiologo extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         filterPanel.setBorder(BorderFactory.createTitledBorder("Filtri"));
         etaPanel.setBorder(BorderFactory.createTitledBorder("Intervallo date di nascita"));
+        calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dataMax.setText(simpleDateFormat.format(calendar.getTime()));
         genereComboBox.addItem("All");
         genereComboBox.addItem("Femmina");
         genereComboBox.addItem("Maschio");
@@ -39,10 +47,7 @@ public class Epidemiologo extends JFrame {
         queryDati();
         updateFilter();
         resetButton.addActionListener(e -> {
-            genereComboBox.setSelectedItem("All");
-            comuneComboBox.setSelectedItem("All");
-            dataMin.setText("1900-01-01");
-            dataMax.setText("2015-01-01");
+            resetFilter();
         });
         queryButton.addActionListener(e -> {
             updateFilter();
@@ -57,6 +62,7 @@ public class Epidemiologo extends JFrame {
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             while (rs.next()) {
                 comuneComboBox.addItem(rs.getString("comuneResidenza"));
+                cities.add(rs.getString("comuneResidenza"));
             }
             dataBaseController = null;
             rs.close();
@@ -87,13 +93,19 @@ public class Epidemiologo extends JFrame {
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             if (rsTamponi.next()) {
                 negativi = rsTamponi.getString("ContaEsito");
+            } else {
+                negativi = String.valueOf(0);
             }
             if (rsTamponi.next()) {
                 positivi = rsTamponi.getString("ContaEsito");
+            } else {
+                positivi = String.valueOf(0);
             }
             ResultSet rsReferti = dataBaseController.getConnection().prepareStatement(decessiQuery).executeQuery();
             if (rsReferti.next()) {
                 decessi = rsReferti.getString("ContaEsito");
+            } else {
+                decessi = String.valueOf(0);
             }
             tableModel.addRow(new String[]{positivi, negativi, decessi});
             tabellaDati.setModel(tableModel);
@@ -107,20 +119,24 @@ public class Epidemiologo extends JFrame {
     private void updateFilter() {
         String genere = String.valueOf(genereComboBox.getSelectedItem());
         String comune = String.valueOf(comuneComboBox.getSelectedItem());
-        switch (genere) {
-            case "All":
-                genere = "(genere = 'Maschio'" +
-                        " OR genere = 'Femmina')";
-                break;
-            case "Femmina":
-                genere = "(genere = 'Femmina')";
-                break;
-            case "Maschio":
-                genere = "(genere = 'Maschio')";
-                break;
+        if ("All".equals(genere)) {
+            genere = " AND genere LIKE '%'";
+        } else {
+            genere = "(genere = '" + genere + "')";
         }
-        comune = (comune.equals("All")) ? "" : comune;
+        if (comune.equals("All")) {
+            comune = " AND comuneResidenza LIKE '%'";
+        } else {
+            comune = " AND (comuneResidenza='" + comune + "')";
+        }
         filter = " AND dataDiNascita >= '" + dataMin.getText() + "' AND dataDiNascita <= '" +
                 dataMax.getText() + "' AND " + genere + comune;
+    }
+
+    private void resetFilter() {
+        genereComboBox.setSelectedItem("All");
+        comuneComboBox.setSelectedItem("All");
+        dataMin.setText("1900-01-01");
+        dataMax.setText(simpleDateFormat.format(calendar.getTime()));
     }
 }
