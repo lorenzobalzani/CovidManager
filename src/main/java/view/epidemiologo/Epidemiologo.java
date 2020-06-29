@@ -34,8 +34,6 @@ public class Epidemiologo extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        filterPanel.setBorder(BorderFactory.createTitledBorder("Filtri"));
-        etaPanel.setBorder(BorderFactory.createTitledBorder("Intervallo date di nascita"));
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dataMax.setText(simpleDateFormat.format(calendar.getTime()));
@@ -84,7 +82,6 @@ public class Epidemiologo extends JFrame {
                 "FROM REFERTO R1 " +
                 "WHERE R1.CF = R.CF AND C.CF = R1.CF) " + filter +
                 " GROUP BY tipo";
-        System.out.println(tamponiQuery);
         try {
             String negativi = "";
             String positivi = "";
