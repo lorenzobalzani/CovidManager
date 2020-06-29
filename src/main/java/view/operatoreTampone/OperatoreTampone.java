@@ -6,8 +6,6 @@ import view.Impostazioni;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,17 +14,16 @@ import java.util.TimeZone;
 
 public class OperatoreTampone extends JFrame {
     private JPanel mainPanel;
-    private JLabel welcomeMessage;
     private JTextField cfTextField;
     private JButton inserisciButton;
     private JComboBox<String> esiti;
     private JButton impostazioniButton;
 
     public OperatoreTampone(OperatoreSanitario operatoreSanitario) {
-        setTitle("Operatore di tampone");
+        setTitle("Gestione operatore di tampone");
         setContentPane(mainPanel);
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3.5),
+                (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3.5));
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         esiti.addItem("Positivo");

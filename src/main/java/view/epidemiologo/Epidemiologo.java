@@ -31,7 +31,7 @@ public class Epidemiologo extends JFrame {
     private List<String> cities = new ArrayList<>();
 
     public Epidemiologo(OperatoreSanitario operatoreSanitario)  {
-        setTitle("Gestione Epidemiologo");
+        setTitle("Gestione epidemiologo");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);

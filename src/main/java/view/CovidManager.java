@@ -14,7 +14,6 @@ import java.util.Optional;
 public class CovidManager extends JFrame {
     private JPanel mainPanel;
     private JPasswordField passwordField;
-    private JLabel welcomeLabel;
     private JButton loginButton;
     private JTextField usernameField;
     private JLabel passwordLabel;

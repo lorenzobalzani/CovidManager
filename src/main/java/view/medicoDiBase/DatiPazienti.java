@@ -15,12 +15,10 @@ import java.util.*;
 
 public class DatiPazienti extends JFrame {
     private JPanel mainPanel;
-    private JLabel welcomeLabel;
     private JComboBox<Cittadino> patients;
     private JTextArea diario;
     private JButton saveButton;
     private JButton defaultButton;
-    private JLabel selectLabel;
     private JTable tabellaDati;
     private JTable tabellaReferti;
     private JScrollPane refertiPanel;

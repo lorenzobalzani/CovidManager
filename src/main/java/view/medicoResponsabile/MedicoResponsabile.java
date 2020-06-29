@@ -6,18 +6,11 @@ import view.Impostazioni;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class MedicoResponsabile extends JFrame {
     private JPanel mainPanel;
-    private JLabel welcomeMessage;
     private JTextField cfTextField;
     private JButton inserisciButton;
     private JComboBox<String> tipo;
@@ -32,12 +25,10 @@ public class MedicoResponsabile extends JFrame {
     public MedicoResponsabile(OperatoreSanitario operatoreSanitario) {
         setTitle("Medico responsabile");
         setContentPane(mainPanel);
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3f),
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        repartoPanel.setBorder(BorderFactory.createTitledBorder("Reparto"));
-        inserisciButton.addActionListener(e -> {});
         codiceGravita.setModel(
                 new SpinnerNumberModel(0, 0, 10, 1));
         tipo.addItem("Inizio ricovero");

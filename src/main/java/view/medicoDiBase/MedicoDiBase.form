@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.medicoDiBase.MedicoDiBase">
   <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
-    <rowspec value="center:0px:grow"/>
     <rowspec value="center:47px:noGrow"/>
     <rowspec value="center:132px:grow"/>
     <colspec value="fill:d:grow"/>
     <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:max(d;4px):noGrow"/>
     <constraints>
-      <xy x="43" y="150" width="926" height="337"/>
+      <xy x="43" y="150" width="1037" height="337"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
       <scrollpane id="73bbb" binding="pazienti">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties>
@@ -33,7 +32,7 @@
       </scrollpane>
       <grid id="868c0" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties/>
@@ -71,42 +70,11 @@
               <text value="Visualizza dati pazienti"/>
             </properties>
           </component>
-        </children>
-      </grid>
-      <component id="96a8f" class="javax.swing.JButton" binding="impostazioniButton">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <font size="20"/>
-          <text value="Impostazioni"/>
-        </properties>
-      </component>
-      <grid id="9854f" layout-manager="FormLayout">
-        <rowspec value="center:d:noGrow"/>
-        <colspec value="fill:d:noGrow"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <forms/>
-        </constraints>
-        <properties>
-          <font size="20"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="c19f5" class="javax.swing.JLabel" binding="riepilogoDatiLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="93" height="252"/>
-                <maximum-size width="-1" height="50"/>
-              </grid>
-              <forms defaultalign-horz="false" defaultalign-vert="false"/>
-            </constraints>
+          <component id="96a8f" class="javax.swing.JButton" binding="impostazioniButton">
+            <constraints/>
             <properties>
-              <font size="36"/>
-              <horizontalTextPosition value="10"/>
-              <text value="Medico di base - Riepilogo dati"/>
+              <font size="20"/>
+              <text value="Impostazioni"/>
             </properties>
           </component>
         </children>

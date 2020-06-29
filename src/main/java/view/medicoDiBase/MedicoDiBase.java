@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 public class MedicoDiBase extends JFrame {
     private JPanel mainPanel;
-    private JLabel riepilogoDatiLabel;
     private JTable tabellaDati;
     private JScrollPane pazienti;
     private JTextField cercaTextField;
@@ -25,7 +24,7 @@ public class MedicoDiBase extends JFrame {
     public MedicoDiBase(OperatoreSanitario medicoDiBase) {
         setTitle("Gestione medico di base");
         setContentPane(mainPanel);
-        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2f),
+        setSize((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 1.5f),
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
