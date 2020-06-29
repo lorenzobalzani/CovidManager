@@ -123,7 +123,7 @@ public class Epidemiologo extends JFrame {
         if ("All".equals(genere)) {
             genere = " AND genere LIKE '%'";
         } else {
-            genere = "(genere = '" + genere + "')";
+            genere = " AND genere = '" + genere + "'";
         }
         if (comune.equals("All")) {
             comune = " AND comuneResidenza LIKE '%'";
@@ -131,7 +131,7 @@ public class Epidemiologo extends JFrame {
             comune = " AND (comuneResidenza='" + comune + "')";
         }
         filter = " AND dataDiNascita >= '" + dataMin.getText() + "' AND dataDiNascita <= '" +
-                dataMax.getText() + "' AND " + genere + comune;
+                dataMax.getText() + "'" + genere + comune;
     }
 
     private void resetFilter() {
