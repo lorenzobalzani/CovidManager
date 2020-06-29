@@ -47,6 +47,9 @@ public class LoginController {
                     case "EPIDEMIOLOGO":
                         operatoreSanitario.setTipo(Ruoli.EPIDEMIOLOGO);
                         break;
+                    case "CONTACT_TRACING":
+                        operatoreSanitario.setTipo(Ruoli.CONTACT_TRACING);
+                        break;
                 }
                 operatoreSanitario.setUsername(inputUsername);
                 noResult = false;
