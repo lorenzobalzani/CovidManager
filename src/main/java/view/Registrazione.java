@@ -38,6 +38,7 @@ public class Registrazione extends JFrame {
         tipo.addItem("MEDICO_RESPONSABILE");
         tipo.addItem("OPERATORE_DI_TAMPONE");
         tipo.addItem("EPIDEMIOLOGO");
+        tipo.addItem("CONTACT_TRACING");
         creaCredenzialiButton.addActionListener(e -> creaCredenziali());
     }
 
@@ -87,7 +88,9 @@ public class Registrazione extends JFrame {
                 "'" + cfCredenziali.getText() + "')";
         try {
             dataBaseController.getConnection().prepareStatement(creaCittadino).executeUpdate();
-            dataBaseController.getConnection().prepareStatement(aggiungiTipo).executeUpdate();
+            if (tipo.getSelectedItem() != "CONTACT_TRACING") {
+                dataBaseController.getConnection().prepareStatement(aggiungiTipo).executeUpdate();
+            }
             dataBaseController = null;
             JOptionPane.showMessageDialog(this,
                     "Inserimento avvenuto con successo!",

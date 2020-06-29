@@ -1,4 +1,4 @@
-package view.operatoreTampone;
+package view;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;

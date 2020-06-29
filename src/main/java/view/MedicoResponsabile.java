@@ -1,4 +1,4 @@
-package view.medicoResponsabile;
+package view;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;

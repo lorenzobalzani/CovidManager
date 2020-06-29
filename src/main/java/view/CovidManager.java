@@ -2,10 +2,7 @@ package view;
 
 import controller.LoginController;
 import model.OperatoreSanitario;
-import view.epidemiologo.Epidemiologo;
 import view.medicoDiBase.MedicoDiBase;
-import view.medicoResponsabile.MedicoResponsabile;
-import view.operatoreTampone.OperatoreTampone;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,6 +42,9 @@ public class CovidManager extends JFrame {
                         break;
                     case OPERATORE_DI_TAMPONE:
                         new OperatoreTampone(operatoreSanitario.get());
+                        break;
+                    case CONTACT_TRACING:
+                        new ContactTracingMonitor(operatoreSanitario.get());
                         break;
                 }
             } else {

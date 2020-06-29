@@ -1,8 +1,7 @@
-package view.epidemiologo;
+package view;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;
-import view.Impostazioni;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
