@@ -29,7 +29,7 @@ public class ContactTracingMonitor extends JFrame   {
 
     private void queryContacts() {
         String[] columnNames = {"Data inizio", "Data fine",
-            "Durata esposizione", "Posizione"};
+            "Durata esposizione (minuti)", "Posizione"};
         DataBaseController dataBaseController = new DataBaseController();
         try {
             String statement = "SELECT *" +
