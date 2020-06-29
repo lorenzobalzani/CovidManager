@@ -9,8 +9,6 @@ import view.operatoreTampone.OperatoreTampone;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Optional;
 
 public class CovidManager extends JFrame {
@@ -26,8 +24,8 @@ public class CovidManager extends JFrame {
     public CovidManager() {
         setTitle("Login CovidManager");
         setContentPane(mainPanel);
-        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
+        setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginButton.addActionListener(e -> {
