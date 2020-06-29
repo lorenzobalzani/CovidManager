@@ -1,6 +1,8 @@
 package view.epidemiologo;
 
 import controller.DataBaseController;
+import model.OperatoreSanitario;
+import view.Impostazioni;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,12 +24,13 @@ public class Epidemiologo extends JFrame {
     private JButton resetButton;
     private JTextField dataMin;
     private JTextField dataMax;
+    private JButton impostazioniButton;
     private String filter="";
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
     private List<String> cities = new ArrayList<>();
 
-    public Epidemiologo()  {
+    public Epidemiologo(OperatoreSanitario operatoreSanitario)  {
         setTitle("Gestione Epidemiologo");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
@@ -51,6 +54,7 @@ public class Epidemiologo extends JFrame {
             updateFilter();
             queryDati();
         });
+        impostazioniButton.addActionListener(e -> new Impostazioni(operatoreSanitario));
     }
 
     private void queryCities() {

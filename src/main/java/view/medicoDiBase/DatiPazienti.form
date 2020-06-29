@@ -84,7 +84,7 @@
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
-        <border type="none"/>
+        <border type="none" title="Tamponi"/>
         <children>
           <component id="33ef5" class="javax.swing.JTable" binding="tabellaDati" default-binding="true">
             <constraints/>
@@ -102,7 +102,7 @@
         <properties>
           <enabled value="true"/>
         </properties>
-        <border type="none"/>
+        <border type="none" title="Ricoveri"/>
         <children>
           <component id="f9ca4" class="javax.swing.JTable" binding="tabellaReferti">
             <constraints/>
@@ -119,7 +119,7 @@
           <forms/>
         </constraints>
         <properties/>
-        <border type="none"/>
+        <border type="none" title="Diario clinico"/>
         <children>
           <component id="48ca" class="javax.swing.JTextArea" binding="diario" default-binding="true">
             <constraints>

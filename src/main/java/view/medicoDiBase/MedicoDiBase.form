@@ -2,7 +2,6 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.medicoDiBase.MedicoDiBase">
   <grid id="27dc6" binding="mainPanel" layout-manager="FormLayout">
     <rowspec value="center:0px:grow"/>
-    <rowspec value="top:3dlu:noGrow"/>
     <rowspec value="center:47px:noGrow"/>
     <rowspec value="center:132px:grow"/>
     <colspec value="fill:d:grow"/>
@@ -14,29 +13,15 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="c19f5" class="javax.swing.JLabel" binding="riepilogoDatiLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="93" height="252"/>
-            <maximum-size width="-1" height="50"/>
-          </grid>
-          <forms defaultalign-horz="false" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <font size="36"/>
-          <horizontalTextPosition value="10"/>
-          <text value="Medico di base - riepilogo dati"/>
-        </properties>
-      </component>
       <scrollpane id="73bbb" binding="pazienti">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties>
           <font size="36"/>
         </properties>
-        <border type="line" title=""/>
+        <border type="line" title="Pazienti in cura"/>
         <children>
           <component id="42965" class="javax.swing.JTable" binding="tabellaDati">
             <constraints/>
@@ -48,7 +33,7 @@
       </scrollpane>
       <grid id="868c0" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="3">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties/>
@@ -98,6 +83,34 @@
           <text value="Impostazioni"/>
         </properties>
       </component>
+      <grid id="9854f" layout-manager="FormLayout">
+        <rowspec value="center:d:noGrow"/>
+        <colspec value="fill:d:noGrow"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="c19f5" class="javax.swing.JLabel" binding="riepilogoDatiLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="93" height="252"/>
+                <maximum-size width="-1" height="50"/>
+              </grid>
+              <forms defaultalign-horz="false" defaultalign-vert="false"/>
+            </constraints>
+            <properties>
+              <font size="36"/>
+              <horizontalTextPosition value="10"/>
+              <text value="Medico di base - Riepilogo dati"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

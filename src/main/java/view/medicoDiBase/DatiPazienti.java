@@ -38,8 +38,6 @@ public class DatiPazienti extends JFrame {
         queryInfo();
         queryReferti();
         queryDiary();
-        statiSalutePanel.setBorder(BorderFactory.createTitledBorder("Tamponi"));
-        refertiPanel.setBorder(BorderFactory.createTitledBorder("Ricoveri"));
         patients.addActionListener(e -> {
             queryInfo();
             queryReferti();

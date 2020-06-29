@@ -2,10 +2,12 @@ package view.operatoreTampone;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;
+import view.Impostazioni;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,6 +20,7 @@ public class OperatoreTampone extends JFrame {
     private JTextField cfTextField;
     private JButton inserisciButton;
     private JComboBox<String> esiti;
+    private JButton impostazioniButton;
 
     public OperatoreTampone(OperatoreSanitario operatoreSanitario) {
         setTitle("Operatore di tampone");
@@ -29,6 +32,7 @@ public class OperatoreTampone extends JFrame {
         esiti.addItem("Positivo");
         esiti.addItem("Negativo");
         inserisciButton.addActionListener(e -> inserisciEsito(operatoreSanitario.getCF()));
+        impostazioniButton.addActionListener(e -> new Impostazioni(operatoreSanitario));
     }
 
     private void inserisciEsito(String operatorCF) {

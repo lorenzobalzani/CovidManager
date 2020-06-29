@@ -38,13 +38,21 @@ public class Impostazioni extends JFrame {
             try {
                 dataBaseController.getConnection().prepareStatement(updatePassword).executeUpdate();
                 dataBaseController = null;
+                JOptionPane.showMessageDialog(this,
+                        "Password cambiata con successo",
+                        "Successo",
+                        JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException throwables) {
+                JOptionPane.showMessageDialog(this,
+                        "Errore nel cambiamento della password",
+                        "Errore",
+                        JOptionPane.WARNING_MESSAGE);
                 throwables.printStackTrace();
             }
         } else {
             JOptionPane.showMessageDialog(this,
                     "Prego ricontrollare la vecchia password!",
-                    "Password errata",
+                    "Errore",
                     JOptionPane.WARNING_MESSAGE);
         }
     }
@@ -56,7 +64,15 @@ public class Impostazioni extends JFrame {
         try {
             dataBaseController.getConnection().prepareStatement(statement).executeUpdate();
             dataBaseController = null;
+            JOptionPane.showMessageDialog(this,
+                    "Username cambiato con successo",
+                    "Successo",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore nell'aggiornare lo username",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

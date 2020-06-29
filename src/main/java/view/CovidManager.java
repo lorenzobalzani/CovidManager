@@ -36,13 +36,13 @@ public class CovidManager extends JFrame {
                 switch (operatoreSanitario.get().getTipo()) {
                     case EPIDEMIOLOGO:
                         //TODO classe epidemiologo
-                        new Epidemiologo();
+                        new Epidemiologo(operatoreSanitario.get());
                         break;
                     case MEDICO_DI_BASE:
                         new MedicoDiBase(operatoreSanitario.get());
                         break;
                     case MEDICO_RESPONSABILE:
-                        new MedicoResponsabile();
+                        new MedicoResponsabile(operatoreSanitario.get());
                         break;
                     case OPERATORE_DI_TAMPONE:
                         new OperatoreTampone(operatoreSanitario.get());

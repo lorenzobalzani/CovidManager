@@ -31,7 +31,7 @@
           <forms/>
         </constraints>
         <properties>
-          <font size="36"/>
+          <font size="20"/>
           <text value="Impostazioni"/>
         </properties>
       </component>

@@ -47,7 +47,7 @@
           <forms/>
         </constraints>
         <properties>
-          <font size="36"/>
+          <font size="20"/>
           <text value="Registrazione"/>
         </properties>
       </component>
@@ -117,7 +117,7 @@
           <forms/>
         </constraints>
         <properties>
-          <font size="16"/>
+          <font size="20"/>
           <text value="Crea credenziali"/>
         </properties>
       </component>
@@ -127,7 +127,7 @@
           <forms/>
         </constraints>
         <properties>
-          <font size="16"/>
+          <font size="20"/>
           <text value="Registra cittadino"/>
         </properties>
       </component>

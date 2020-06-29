@@ -2,9 +2,12 @@ package view.medicoResponsabile;
 
 import controller.DataBaseController;
 import model.OperatoreSanitario;
+import view.Impostazioni;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -24,8 +27,9 @@ public class MedicoResponsabile extends JFrame {
     private JComboBox<String> ospedale;
     private JTextField piano;
     private JTextField reparto;
+    private JButton impostazioniButton;
 
-    public MedicoResponsabile() {
+    public MedicoResponsabile(OperatoreSanitario operatoreSanitario) {
         setTitle("Medico responsabile");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
@@ -49,6 +53,7 @@ public class MedicoResponsabile extends JFrame {
                         " idOspedale FROM OSPEDALE WHERE nomeOspedale = '" +
                         ospedale.getSelectedItem() + "'), " + piano.getText() + ", " +
                         reparto.getText() + ");"));
+        impostazioniButton.addActionListener(e -> new Impostazioni(operatoreSanitario));
     }
 
     private void inserisciReferto(String statement) {
