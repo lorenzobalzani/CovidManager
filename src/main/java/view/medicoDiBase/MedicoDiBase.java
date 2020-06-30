@@ -35,6 +35,7 @@ public class MedicoDiBase extends JFrame {
                 medicoDiBase.getCF() +
                 "')");
         datiPazientiButton.addActionListener(e -> new DatiPazienti(medicoDiBase));
+        cercaTextField.addActionListener(e -> search(cercaTextField.getText()));
         cercaButton.addActionListener(e -> search(cercaTextField.getText()));
         impostazioniButton.addActionListener(e -> new Impostazioni(medicoDiBase));
     }
