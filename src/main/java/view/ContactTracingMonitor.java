@@ -31,7 +31,7 @@ public class ContactTracingMonitor extends JFrame   {
         DataBaseController dataBaseController = new DataBaseController();
         try {
             String statement = "SELECT *" +
-                    " FROM CONTATTO_REGISTRATO";
+                    " FROM CONTATTO_REGISTRATO, TEMPO";
             ResultSet rs = dataBaseController.getConnection().prepareStatement(statement).executeQuery();
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while (rs.next()) {

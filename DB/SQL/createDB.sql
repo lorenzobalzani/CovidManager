@@ -42,14 +42,12 @@ create table CONTATTO_REGISTRATO
 (
     CON_CF            varchar(17) not null,
     CF                varchar(17) not null,
-    dataInizio        datetime    not null,
-    dataFine          datetime    not null,
-    durataEsposizione float       not null,
+    ID_TEM            int 		  not null,
     longitudine       float       not null,
     latitudine        float       not null,
     altitudine        float       not null,
     constraint ID_CONTATTO_REGISTRATO_IND
-        unique (CON_CF, CF, dataInizio, dataFine),
+        unique (CON_CF, CF, ID_TEM),
     constraint REF_CONTA_CITTA
         foreign key (CON_CF) references CITTADINO (CF),
     constraint REF_CONTA_CITTA_1_FK
@@ -60,7 +58,7 @@ create index REF_CONTA_CITTA_1_IND
     on CONTATTO_REGISTRATO (CF);
 
 alter table CONTATTO_REGISTRATO
-    add primary key (CON_CF, CF, dataInizio, dataFine);
+    add primary key (CON_CF, CF, ID_TEM);
 
 create table CREDENZIALI
 (
