@@ -1,5 +1,7 @@
 package view;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import model.OperatoreSanitario;
 import model.Ruoli;
@@ -67,13 +69,13 @@ public class Registrazione extends JFrame {
         try {
             dataBaseController.getConnection().prepareStatement(creaCittadino).executeUpdate();
             dataBaseController = null;
-            } catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
             JOptionPane.showMessageDialog(this,
                     "Inserimento non andato a buon fine! Ritentare tra qualche minuto!",
                     "Problema generico",
                     JOptionPane.WARNING_MESSAGE);
-            }
+        }
     }
 
     private void creaCredenziali() {
@@ -107,4 +109,5 @@ public class Registrazione extends JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
     }
+
 }

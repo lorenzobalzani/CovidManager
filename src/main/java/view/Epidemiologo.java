@@ -1,9 +1,12 @@
 package view;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
@@ -24,12 +27,12 @@ public class Epidemiologo extends JFrame {
     private JTextField dataMin;
     private JTextField dataMax;
     private JButton impostazioniButton;
-    private String filter="";
+    private String filter = "";
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
     private List<String> cities = new ArrayList<>();
 
-    public Epidemiologo(OperatoreSanitario operatoreSanitario)  {
+    public Epidemiologo(OperatoreSanitario operatoreSanitario) {
         setTitle("Gestione epidemiologo");
         setContentPane(mainPanel);
         setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
@@ -139,4 +142,5 @@ public class Epidemiologo extends JFrame {
         dataMin.setText("1900-01-01");
         dataMax.setText(simpleDateFormat.format(calendar.getTime()));
     }
+
 }

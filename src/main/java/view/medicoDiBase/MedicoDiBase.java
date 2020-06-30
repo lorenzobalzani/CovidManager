@@ -1,10 +1,13 @@
 package view.medicoDiBase;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import model.OperatoreSanitario;
 import view.Impostazioni;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
@@ -42,9 +45,9 @@ public class MedicoDiBase extends JFrame {
 
     private void search(String text) {
         queryPatients("SELECT * FROM CITTADINO C" +
-                        " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M" +
-                " WHERE M.CF = '" + medicoDiBase.getCF() + "') AND (nome LIKE '%" + text +"%' OR cognome LIKE '%" +
-                text + "%' OR telefono LIKE '%" + text + "' OR comuneResidenza LIKE '%" + text +"')");
+                " WHERE ID_MED = (SELECT ID_MED FROM MEDICO_DI_BASE M" +
+                " WHERE M.CF = '" + medicoDiBase.getCF() + "') AND (nome LIKE '%" + text + "%' OR cognome LIKE '%" +
+                text + "%' OR telefono LIKE '%" + text + "' OR comuneResidenza LIKE '%" + text + "')");
     }
 
     private void queryPatients(String statement) {
@@ -68,4 +71,5 @@ public class MedicoDiBase extends JFrame {
             throwables.printStackTrace();
         }
     }
+
 }
