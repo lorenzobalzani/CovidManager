@@ -1,7 +1,6 @@
 package view;
 
 import controller.DataBaseController;
-import model.Cittadino;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
@@ -9,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 public class ContactTracingMonitor extends JFrame   {
     private JPanel mainPanel;
