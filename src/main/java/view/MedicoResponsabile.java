@@ -8,6 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class MedicoResponsabile extends JFrame {
     private JPanel mainPanel;
@@ -38,9 +42,11 @@ public class MedicoResponsabile extends JFrame {
         tipo.addItem("Decesso");
         ospedale.addItem("Seleziona ospedale...");
         queryOspedale();
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         inserisciButton.addActionListener(e -> inserisciReferto("INSERT INTO REFERTO VALUES ('" +
                         cfTextField.getText() + "', '" + tipo.getSelectedItem() + "', '" +
-                        codiceGravita.getValue() + "', '" + data.getText() + "', (SELECT" +
+                        codiceGravita.getValue() + "', '" + simpleDateFormat.format(calendar.getTime()) + "', (SELECT" +
                         " idOspedale FROM OSPEDALE WHERE nomeOspedale = '" +
                         ospedale.getSelectedItem() + "'), " + piano.getText() + ", " +
                         reparto.getText() + ");"));

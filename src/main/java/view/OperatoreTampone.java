@@ -35,12 +35,11 @@ public class OperatoreTampone extends JFrame {
     private void inserisciEsito(String operatorCF) {
         DataBaseController dataBaseController = new DataBaseController();
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String inserisciEsito = "INSERT INTO TAMPONE VALUES (" +
                 "'" + cfTextField.getText() + "', '" + simpleDateFormat.format(calendar.getTime()) + "', '" +
                 esiti.getSelectedItem() + "', (SELECT ID_OPE " +
                 "FROM OPERATORE_DI_TAMPONE OPE WHERE OPE.CF = '" + operatorCF + "'));";
-
         try {
             dataBaseController.getConnection().prepareStatement(inserisciEsito).executeUpdate();
             dataBaseController = null;

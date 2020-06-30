@@ -83,8 +83,8 @@ create table DIARIO_CLINICO
 (
     idDiario      int auto_increment,
     CF            varchar(17)   not null,
-    dataCreazione date          not null,
-    dataRimozione date          null,
+    dataCreazione datetime      not null,
+    dataRimozione datetime      null,
     testoDiario   varchar(1000) not null,
     constraint ID_DIARIO_CLINICO_IND
         unique (idDiario),
@@ -198,7 +198,7 @@ create table REFERTO
     CF            varchar(17)                                                                                                not null,
     tipo          enum ('Inizio ricovero', 'Fine ricovero', 'Inizio terapia intensiva', 'Fine terapia intensiva', 'Decesso') not null,
     codiceGravita int                                                                                                        not null,
-    data          date                                                                                                       not null,
+    data          datetime                                                                                                       not null,
     idOspedale    int                                                                                                        not null,
     numeroPiano   int                                                                                                        not null,
     idReparto     int                                                                                                        not null,
@@ -231,7 +231,7 @@ alter table REPARTO_COVID
 create table TAMPONE
 (
     CF     varchar(17) not null,
-    data   date        not null,
+    data   datetime    not null,
     esito  enum ('Positivo', 'Negativo') not null,
     ID_OPE int         null,
     constraint ID_TAMPONE_IND

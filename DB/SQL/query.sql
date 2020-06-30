@@ -204,9 +204,26 @@ SELECT DISTINCT esito, COUNT(esito) AS ContaEsito
 FROM TAMPONE T, CITTADINO C
 WHERE T.data = (SELECT MAX(T1.data) FROM TAMPONE T1 WHERE T1.CF = T.CF AND C.CF = T1.CF )
   AND dataDiNascita >= '1990-02-01' AND dataDiNascita <= '2020-01-01' AND genere = 'Femmina'
-GROUP BY esito
+GROUP BY esito;
+
+/**
+  Query diario
+ */
+SELECT testoDiario
+FROM DIARIO_CLINICO
+WHERE CF = 'BLZLNZ99B17H199T';
+
+/**
+  Eliminazione diario
+ */
+UPDATE DIARIO_CLINICO
+SET dataRimozione = current_time(), testoDiario = ''
+WHERE CF = 'BLZLNZ99B17H199T';
 
 
-
-
-
+/**
+  Salvataggio diario
+ */
+UPDATE DIARIO_CLINICO
+SET testoDiario = 'Nuovo diario'
+WHERE CF = 'BLZLNZ99B17H199T';

@@ -156,8 +156,16 @@ public class DatiPazienti extends JFrame {
             }
             connection.prepareStatement(statement).executeUpdate();
             dataBaseController = null;
+            JOptionPane.showMessageDialog(this,
+                    "Diario salvato con successo",
+                    "Successo",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            JOptionPane.showMessageDialog(this,
+                    "Errore nel salvataggio del diario",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 }

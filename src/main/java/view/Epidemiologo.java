@@ -37,7 +37,7 @@ public class Epidemiologo extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dataMax.setText(simpleDateFormat.format(calendar.getTime()));
         genereComboBox.addItem("All");
         genereComboBox.addItem("Femmina");
