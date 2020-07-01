@@ -1,10 +1,13 @@
 package view;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import utility.EncryptionUtility;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.sql.SQLException;
 
@@ -24,8 +27,8 @@ public class Impostazioni extends JFrame {
                 (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
         setVisible(true);
         this.operatoreSanitario = operatoreSanitario;
-        salvaUsernameButton.addActionListener(e-> updateUsername(newUsernameTextField.getText()));
-        salvaPasswordButton.addActionListener(e-> updatePassword(String.valueOf(oldPasswordTextField.getPassword()),
+        salvaUsernameButton.addActionListener(e -> updateUsername(newUsernameTextField.getText()));
+        salvaPasswordButton.addActionListener(e -> updatePassword(String.valueOf(oldPasswordTextField.getPassword()),
                 String.valueOf(newPasswordTextField.getPassword())));
     }
 
@@ -76,4 +79,5 @@ public class Impostazioni extends JFrame {
             throwables.printStackTrace();
         }
     }
+
 }

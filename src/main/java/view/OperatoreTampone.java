@@ -1,10 +1,13 @@
 package view;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import model.OperatoreSanitario;
 import view.Impostazioni;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -57,4 +60,5 @@ public class OperatoreTampone extends JFrame {
             throwables.printStackTrace();
         }
     }
+
 }

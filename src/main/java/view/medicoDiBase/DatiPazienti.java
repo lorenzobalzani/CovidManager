@@ -1,10 +1,13 @@
 package view.medicoDiBase;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import controller.DataBaseController;
 import model.Cittadino;
 import model.OperatoreSanitario;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.Connection;
@@ -45,7 +48,7 @@ public class DatiPazienti extends JFrame {
         saveButton.addActionListener(e -> saveDiary());
     }
 
-    private void queryPatient(){
+    private void queryPatient() {
         DataBaseController dataBaseController = new DataBaseController();
         try {
             String statement = "SELECT * FROM CITTADINO" +
@@ -116,7 +119,7 @@ public class DatiPazienti extends JFrame {
         }
     }
 
-    private void queryDiary(){
+    private void queryDiary() {
         DataBaseController dataBaseController = new DataBaseController();
         String CF = ((Cittadino) Objects.requireNonNull(patients.getSelectedItem())).getCF();
         try {
@@ -144,9 +147,9 @@ public class DatiPazienti extends JFrame {
             rs.beforeFirst();
             rs.last();
             String statement;
-            if (rs.getRow()!=0) {
+            if (rs.getRow() != 0) {
                 statement = "UPDATE `DIARIO_CLINICO` SET `testoDiario` = '" +
-                        diario.getText() + "' WHERE `CF` = '" + CF +"';";
+                        diario.getText() + "' WHERE `CF` = '" + CF + "';";
             } else {
                 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -168,4 +171,5 @@ public class DatiPazienti extends JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
     }
+
 }
