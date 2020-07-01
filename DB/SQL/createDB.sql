@@ -51,7 +51,8 @@ create table CONTATTO_REGISTRATO
     constraint REF_CONTA_CITTA
         foreign key (CON_CF) references CITTADINO (CF),
     constraint REF_CONTA_CITTA_1_FK
-        foreign key (CF) references CITTADINO (CF)
+        foreign key (CF) references CITTADINO (CF),
+    CONSTRAINT CHK_differentPeople CHECK (CF <> CON_CF)
 );
 
 create index REF_CONTA_CITTA_1_IND
@@ -73,7 +74,8 @@ create table CREDENZIALI
     constraint SID_CREDE_CITTA_IND
         unique (CF),
     constraint SID_CREDE_CITTA_FK
-        foreign key (CF) references CITTADINO (CF)
+        foreign key (CF) references CITTADINO (CF),
+    CONSTRAINT CHK_usernameLength  CHECK (LENGTH(username) > 5)
 );
 
 alter table CREDENZIALI
@@ -93,7 +95,9 @@ create table DIARIO_CLINICO
     constraint SID_DIARI_CITTA_IND
         unique (CF),
     constraint SID_DIARI_CITTA_FK
-        foreign key (CF) references CITTADINO (CF)
+        foreign key (CF) references CITTADINO (CF),
+    CONSTRAINT CHK_dates  CHECK (IF(dataRimozione IS NOT NULL,
+        dataRimozione>dataCreazione, TRUE))
 );
 
 alter table DIARIO_CLINICO
@@ -174,7 +178,8 @@ create table OSPEDALE
     indirizzo     varchar(50) not null,
     mailDirezione varchar(50) not null,
     constraint ID_OSPEDALE_IND
-        unique (idOspedale)
+        unique (idOspedale),
+    CONSTRAINT CHK_dates  CHECK (email)
 );
 
 alter table OSPEDALE
@@ -202,31 +207,34 @@ create table REFERTO
     idOspedale    int                                                                                                        not null,
     numeroPiano   int                                                                                                        not null,
     idReparto     int                                                                                                        not null,
-    primary key (CF, tipo, data)
+    primary key (CF, tipo, data),
+    constraint REF_REFERTO_REPARTO
+        foreign key (idOspedale, numeroPiano, idReparto)
+            references REPARTO_COVID (idOspedale, numeroPiano, idReparto)
 );
 
 create table REPARTO_COVID
 (
     idOspedale       int not null,
-    idPiano          int not null,
+    numeroPiano          int not null,
     idReparto        int not null,
     ID_RESP          int not null,
     numeroPostiLetto int not null,
     numeroPostiTI    int not null,
     constraint ID_REPARTO_COVID_IND
-        unique (idOspedale, idPiano, idReparto),
+        unique (idOspedale, numeroPiano, idReparto),
     constraint SID_REPAR_MEDIC_ID
         unique (ID_RESP),
     constraint SID_REPAR_MEDIC_IND
         unique (ID_RESP),
     constraint REF_REPAR_PIANO
-        foreign key (idOspedale, idPiano) references PIANO (idOspedale, numeroPiano),
+        foreign key (idOspedale, numeroPiano) references PIANO (idOspedale, numeroPiano),
     constraint SID_REPAR_MEDIC_FK
         foreign key (ID_RESP) references MEDICO_RESPONSABILE (ID_RESP)
 );
 
 alter table REPARTO_COVID
-    add primary key (idOspedale, idPiano, idReparto);
+    add primary key (idOspedale, numeroPiano, idReparto);
 
 create table TAMPONE
 (
