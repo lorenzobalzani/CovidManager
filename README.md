@@ -7,7 +7,7 @@ It's a desktop based software application with the goal to simulate the manageme
 Within the folder, launch the following command:
 
 ```bash
-java -jar 
+java -jar ./out/artifacts/CovidManager_main_jar/CovidManager.main.jar
 ```
 
 ## Run within IntelliJ Idea
