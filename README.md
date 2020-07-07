@@ -4,15 +4,15 @@ It's a desktop based software application with the goal to simulate the manageme
 
 ## Run the JAR
 
-Within the folder, launch the following command:
+Within the main folder, launch the following command:
 
 ```bash
-java -jar ./out/artifacts/CovidManager_main_jar/CovidManager.main.jar
+java -jar ./application/CovidManager.jar
 ```
 
 ## Run within IntelliJ Idea
 
-The project has been built with IntelliJ Idea GUI designer tool. To run the project import it as Gradle project in the IDE. 
+The project has been built with IntelliJ Idea GUI designer tool. To run the project import it as Gradle project in the IDE.
 
 ## Usage
 Use these credentials to test the project:
