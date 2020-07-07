@@ -12,7 +12,7 @@ java -jar ./out/artifacts/CovidManager_main_jar/CovidManager.main.jar
 
 ## Run within IntelliJ Idea
 
-The project has been built with IntelliJ Idea GUI designer tool. To run the project import as Gradle project in the IDE. 
+The project has been built with IntelliJ Idea GUI designer tool. To run the project import it as Gradle project in the IDE. 
 
 ## Usage
 Use these credentials to test the project:
