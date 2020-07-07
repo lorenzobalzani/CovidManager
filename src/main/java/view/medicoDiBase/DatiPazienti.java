@@ -65,6 +65,11 @@ public class DatiPazienti extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i pazienti del medico di base con CF: "
+                            + medicoDiBase.getCF(),
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
@@ -87,6 +92,10 @@ public class DatiPazienti extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i tamponi del paziente con CF: " + CF,
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
@@ -115,6 +124,10 @@ public class DatiPazienti extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i referti del paziente con CF: " + CF,
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
@@ -133,6 +146,10 @@ public class DatiPazienti extends JFrame {
             rs.close();
             dataBaseController = null;
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere il diario clinico del paziente con CF: " + CF,
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

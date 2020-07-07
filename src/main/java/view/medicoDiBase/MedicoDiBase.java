@@ -68,6 +68,11 @@ public class MedicoDiBase extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i pazienti del medico di base con CF: "
+                            + medicoDiBase.getCF(),
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

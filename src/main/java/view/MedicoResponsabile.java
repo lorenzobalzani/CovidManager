@@ -84,6 +84,10 @@ public class MedicoResponsabile extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere gli ospedali",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

@@ -71,6 +71,10 @@ public class Epidemiologo extends JFrame {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere tutti i comuni di residenza",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
@@ -115,6 +119,10 @@ public class Epidemiologo extends JFrame {
             dataBaseController = null;
             rsTamponi.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i dati sull'epidemia",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }

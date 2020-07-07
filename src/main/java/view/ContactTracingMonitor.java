@@ -48,6 +48,10 @@ public class ContactTracingMonitor extends JFrame   {
             dataBaseController = null;
             rs.close();
         } catch (SQLException throwables) {
+            JOptionPane.showMessageDialog(this,
+                    "Errore provando a ottenere i contatti registrati",
+                    "Errore",
+                    JOptionPane.WARNING_MESSAGE);
             throwables.printStackTrace();
         }
     }
